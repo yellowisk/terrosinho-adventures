@@ -22,7 +22,9 @@ const Home: React.FC = () => {
 
   return (
     <div className="relative flex  min-h-screen  flex-col justify-center items-center m:py-12">
-      <h1 className="text-center text-5xl">Welcome to the Home page!</h1>
+       <h1 className="text-9xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 drop-shadow-lg mb-8">
+       TERROSO
+      </h1>
       <div className="flex justify-center mt-10 gap-10">
         <Button onClick={handleStoriesClick} text="Stories" variant="primary" />
         <Button
