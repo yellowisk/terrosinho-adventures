@@ -1,16 +1,37 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const animationFadeIn = css`
+  animation: fadeIn 0.3s ease;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
 
 export const Container = styled.div`
+  left: 0;
+  top: 0;
   position: fixed;
   z-index: 1;
   padding: 16px;
-  height: 100vh;
+  height: -webkit-fill-available;
   width: 100vw;
-  align-content: flex-end;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  /* align-content: flex-end; */
+  ${animationFadeIn}
 `;
 export const StoryCard = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: #ffffff05;
   align-items: center;
   justify-content: center;
   padding: 16px;
@@ -32,6 +53,7 @@ export const StoryCard = styled.div`
 
 export const ImageCover = styled.img`
   border-radius: 10px;
+
   position: relative;
   display: flex;
   justify-content: center;
@@ -43,40 +65,32 @@ export const ImageCover = styled.img`
   object-fit: cover;
 `;
 
-
 export const Footer = styled.div`
-  height: 12%;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  align-self: flex-end;
 `;
-
-type alignProps = {
-  align: "left" | "right";
-};
-
-export const FramesContainer = styled.div<alignProps>`
-  height: 85%;
-  width: 100%;
+export const FramesContainer = styled.div`
   display: flex;
-  align-items: start;
-  ${(props) =>
-    props.align === "left" &&
-    `
-    flex-direction: row-reverse;
-    `}
+  justify-content: space-between;
+  align-self: flex-start;
+  width: inherit;
 `;
 
 export const Frame = styled.div`
   width: 30%;
-  margin-top: 16px;
+  height: fit-content;
+
+  margin-top: 32px;
   padding: 16px;
   border-radius: 10px;
   /* box-shadow: 0 0 10px #4a556887; */
   overflow: hidden;
   text-align: justify;
   background-color: #4a556887;
+  ${animationFadeIn}
 `;
 
 export const FrameImage = styled.img`
@@ -104,6 +118,7 @@ export const LegendContainer = styled.div`
   background-color: #4a556887;
   border-radius: 10px;
   padding: 16px;
+  ${animationFadeIn}
 `;
 
 export const LegendTitle = styled.h1`
@@ -131,6 +146,8 @@ export const ChevronContainer = styled.div<{ disabled: boolean }>`
   height: 100%;
   width: 70px;
   border-radius: 5px;
+  min-height: 70px;
+  max-width: 60px;
   color: white;
   cursor: pointer;
   display: flex;

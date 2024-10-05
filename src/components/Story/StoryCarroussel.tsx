@@ -36,8 +36,8 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
       <S.BackIcon onClick={handleExit}>
         <X />
       </S.BackIcon>
-      {currentFrame.frameLeft && (
-        <S.FramesContainer align="left">
+      <S.FramesContainer>
+        {currentFrame.frameLeft && (
           <S.Frame>
             <S.FrameTitle>{currentFrame.frameLeft.title}</S.FrameTitle>
             {currentFrame.frameLeft.image && (
@@ -47,10 +47,8 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
               {currentFrame.frameLeft.description}
             </S.FrameDescription>
           </S.Frame>
-        </S.FramesContainer>
-      )}
-      {currentFrame.frameRight && (
-        <S.FramesContainer align="right">
+        )}
+        {currentFrame.frameRight && (
           <S.Frame>
             <S.FrameTitle>{currentFrame.frameRight.title}</S.FrameTitle>
             {currentFrame.frameRight.image && (
@@ -60,8 +58,8 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
               {currentFrame.frameRight.description}
             </S.FrameDescription>
           </S.Frame>
-        </S.FramesContainer>
-      )}
+        )}
+      </S.FramesContainer>
       <S.Footer>
         <S.ChevronContainer
           disabled={currentFrameIndex == 0}
