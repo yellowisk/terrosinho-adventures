@@ -9,7 +9,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ text, icon: Icon, onClick }) => {
   return (
     <div 
-      className="flex flex-col items-center justify-center h-20 w-36 bg-white rounded-lg shadow-lg cursor-pointer" 
+      className="flex flex-col items-center justify-center h-20 w-36 bg-white rounded-lg shadow-lg cursor-pointer hover:translate-y-1 transform transition duration-300 ease-in-out" 
       onClick={onClick}
     >
       <Icon className="w-8 h-8 text-blue-500" />

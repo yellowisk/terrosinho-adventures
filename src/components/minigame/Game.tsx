@@ -2,55 +2,109 @@ import { ArrowLeft, ArrowRight, LucideIcon } from "lucide-react";
 import ImageContent from "../image";
 import terroso from "../../assets/terroso_imgs/terroso_thinking.png";
 import Dialog from "../dialog";
-import { MinigameInterface } from "../../types/minigame";
+import { MinigameInterface, SolutionType } from "../../types/minigame";
 import Card from "./Card";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const Game: React.FC<MinigameInterface> = ({ type, question, options, finalScore }) => {
+const Game: React.FC<MinigameInterface> = ({ type, imageBefore, imageAfter, question, options, finalScore }) => {
 
     const scrollRef = useRef<HTMLDivElement>(null);
+    const [sliderValue, setSliderValue] = useState(100);
+    const [isDragging, setIsDragging] = useState(false);
+    useEffect(() => {
+      setSliderValue(50);
+    }
+    , []);
 
     const scrollLeft = () => {
         if (scrollRef.current) {
-          scrollRef.current.scrollBy({ left: -200, behavior: 'smooth' }); // Adjust the value to control scroll distance
+          scrollRef.current.scrollBy({ left: -200, behavior: 'smooth' });
         }
       };
     
-      // Function to scroll right
       const scrollRight = () => {
         if (scrollRef.current) {
-          scrollRef.current.scrollBy({ left: 200, behavior: 'smooth' }); // Adjust the value to control scroll distance
+          scrollRef.current.scrollBy({ left: 200, behavior: 'smooth' });
         }
       };
 
+      const computePoints = (solType: SolutionType) => {
+        if (solType === type) {
+          finalScore += 10;
+        }
+      };
+
+      const handleMouseDown = (e: React.MouseEvent) => {
+        setIsDragging(true);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (isDragging) {
+            const container = e.currentTarget.getBoundingClientRect();
+            const newSliderValue = ((e.clientX - container.left) / container.width) * 100;
+            setSliderValue(Math.max(0, Math.min(newSliderValue, 100)));
+        }
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
   return (
-    <div className="h-screen grid grid-rows-[5%_10%_60%_25%]">
-      <div className="flex flex-row justify-start">
-        <ArrowLeft className="text-red-600" />
-      </div>
-      <div className="flex flex-row bg-green-500 justify-center items-center">
-        <div className="text-2xl px-2 mx-3 font-bold rounded-3xl bg-fuchsia-500">{question}</div>
-      </div>
-      <div className="flex flex-row">
-        <div className="w-2/3 bg-red-500"></div>
-        <div className="w-1/3 bg-orange-400">
-          <div className="flex flex-col h-1/2 justify-end py-5 items-center">
-            <Dialog text="What can we do to help?" />
-          </div>
-          <div className="flex flex-col h-1/2 justify-end items-center">
-            <ImageContent src={terroso} alt="terroso" />
+    <div className="h-screen grid grid-rows-[10%_65%_25%]">
+      <div className="flex flex-row w-full items-center">
+        <div className="flex flex-row justify-start">
+          <ArrowLeft className="text-red-600" />
+        </div>
+        <div className="flex flex-row justify-center grow">
+          <div className="text-2xl px-2 mx-3 font-bold rounded-3xl bg-gradient-to-tr from-fuchsia-500 to-fuchsia-800 text-white">
+            {question}
           </div>
         </div>
       </div>
-      <div className="bg-cyan-400 flex items-center overflow-hidden">
+
+      <div className="flex flex-row">
+        <div
+          className="relative w-full bg-red-500 overflow-hidden select-none"
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+        >
+
+            <img src={imageBefore} alt="Before" className="absolute top-0 left-0 w-full h-full object-cover" />
+
+            <div
+                className="absolute top-0 left-0 h-full overflow-hidden"
+                style={{ width: `${sliderValue}%` }}
+            >
+                <img src={imageAfter} alt="After" className="w-full h-full object-cover" />
+            </div>
+
+            <div
+                className="absolute top-0 right-20 h-full bg-fuchsia-500"
+                style={{ left: `${sliderValue}%`, width: '5px', cursor: 'ew-resize' }}
+                onMouseDown={handleMouseDown}
+            />
+            <div className="absolute right-0 flex flex-col items-end h-full">
+              <div className="flex flex-col h-1/2 justify-end py-5 items-center">
+                <Dialog text="What can we do to help?" />
+              </div>
+              <div className="flex flex-col h-1/2 justify-end items-center">
+                <ImageContent src={terroso} alt="terroso" />
+              </div>
+            </div>
+          </div>
+      </div>
+      <div className="flex items-center overflow-hidden">
         <button onClick={scrollLeft} className="text-red-600 p-2">
           <ArrowLeft className="h-6 w-6" />
         </button>
         <div className="overflow-hidden flex flex-row" ref={scrollRef}>
           <div className="flex flex-row space-x-4 p-2">
             {options.map((option, index) => (
-              <Card key={index} text={option.SolutionOptions.text} icon={option.SolutionOptions.Icon as LucideIcon} />
-            ))}
+              <Card key={index} text={option.SolutionOptions.text} icon={option.SolutionOptions.Icon as LucideIcon} 
+              onClick={()=>computePoints(option.SolutionOptions.type)} />
+           ))}
           </div>
         </div>
         <button onClick={scrollRight} className="text-red-600 p-2">
