@@ -18,6 +18,7 @@ function App() {
             <Route path="stories" element={<Stories />} />
             <Route path="simulator" element={<Simulation />}/>
             <Route path="minigame" element={<Minigame />} />
+            <Route path="minigamemenu" element={<Minigame />} />
           </Route>
         </Routes>
       </Suspense>

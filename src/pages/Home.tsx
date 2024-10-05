@@ -17,7 +17,7 @@ const Home: React.FC = () => {
 
   const handleGamesClick = useCallback(() => {
     console.log("Games button clicked");
-    navigate("/minigame");
+    navigate("/minigamemenu");
   }, [navigate]);
 
   return (
