@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 const Home = lazy(() => import("../src/pages/Home"));
 const Stories = lazy(() => import("../src/pages/Stories"));
 const Simulation = lazy(() => import("../src/pages/Simulation"));
+const Minigame = lazy(() => import("../src/pages/Minigame"));
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="stories" element={<Stories />} />
             <Route path="simulator" element={<Simulation />}/>
+            <Route path="minigame" element={<Minigame />} />
           </Route>
         </Routes>
       </Suspense>
