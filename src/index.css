@@ -71,3 +71,25 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px; /* for horizontal scrollbar */
+}
+
+/* Track (background of the scrollbar) */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+/* Handle (draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
