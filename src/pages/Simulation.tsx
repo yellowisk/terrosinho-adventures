@@ -1,18 +1,20 @@
 import React from "react";
-import Globe from "react-globe.gl";
+import Globe, { GlobeMethods } from "react-globe.gl";
 
 import TimePoint from "../components/TimePoint";
 
 interface EarthSimulationProps {
   imageUrl: string;
+  globeRef: React.MutableRefObject<GlobeMethods | undefined>;
+  backgroundUrl: string;
 }
 
-
-const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl }) => {
+const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, backgroundUrl, globeRef }) => {
     return (
         <Globe 
+        ref={globeRef}
         globeImageUrl={imageUrl}
-        backgroundImageUrl={"./background.jpg"}
+        backgroundImageUrl={backgroundUrl}
         animateIn={true}
         />
     );
@@ -21,6 +23,28 @@ const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl }) => {
 const Simulation: React.FC = () => {
     const [currentEvent, setCurrentEvent] = React.useState<string>("");
 
+    const [backgroundUrl, setBackgroundUrl] = React.useState<string>("");
+
+    const globeRef = React.useRef<GlobeMethods | undefined>();
+    const rotate = async (globeRef: React.MutableRefObject<GlobeMethods | undefined>) => {
+        if (globeRef.current) {
+            console.log("Globe ref", globeRef.current);
+            const controls = globeRef.current.controls();
+            controls.autoRotate = true;
+            globeRef.current.pointOfView({ lat: 0, lng: 0 });
+            for (let i = 500; i > 0; i -= 1) {
+                controls.autoRotateSpeed = i;
+                await new Promise((resolve) => setTimeout(resolve, 0.5));
+            }
+            controls.autoRotate = false;
+        }
+    }
+
+    React.useEffect(() => {
+        rotate(globeRef).then(() => {
+            setBackgroundUrl("./background.jpg");
+        });
+    }, []);
 
     const Timeline: React.FC = () => {
         return (
@@ -36,7 +60,7 @@ const Simulation: React.FC = () => {
             <div id="simulation">
                 {/* <h1 className="absolute z-10 transform translate-x-1/2 bottom-20 text-4xl text-white text-center">{currentEvent}</h1> */}
                 <Timeline />
-                <EarthSimulation imageUrl={"./first_extinction.png"}/>
+                <EarthSimulation imageUrl={"./first_extinction.png"} globeRef={globeRef} backgroundUrl={backgroundUrl}/>
             </div>
         </>
     );
