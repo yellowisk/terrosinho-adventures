@@ -17,7 +17,7 @@ const Home: React.FC = () => {
 
   const handleGamesClick = useCallback(() => {
     console.log("Games button clicked");
-    navigate("/games");
+    navigate("/minigame");
   }, [navigate]);
 
   return (
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
           text="Simulator"
           variant="secondary"
         />
-        <Button onClick={handleGamesClick} text="Games" variant="tertiary" />
+        <Button onClick={handleGamesClick} text="Minigame" variant="tertiary" />
       </div>
     </div>
   );
