@@ -18,10 +18,11 @@ enum SolutionType {
 
 interface MinigameInterface {
   type: SolutionType;
+  imageBefore: string;
+  imageAfter: string;
   question: string;
   options: Array<{
       SolutionOptions: SolutionOption;
-      correct: boolean;
   }>;
   finalScore: number;
 }
