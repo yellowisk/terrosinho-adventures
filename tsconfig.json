@@ -3,5 +3,17 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@stories/*": ["src/stories/*"],
+      "@types/*": ["src/types/*"],
+      "@minigame/*": ["src/minigame/*"],
+      "@node/*": ["src/node/*"]
+    }
+  }
 }
