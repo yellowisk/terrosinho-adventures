@@ -1,6 +1,19 @@
 export type StoryFrame = {
   terrosoImg: string,
-  description: string,
+  frameLeft?:{
+    image?: string,
+    title?: string,
+    description?: string,
+  },
+  frameRight?:{
+    image?: string,
+    title?: string,
+    description?: string,
+  },
+  frameCenter?:{
+    title?: string,
+    description?: string,
+  }
 };
 
 export type Story = {
