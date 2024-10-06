@@ -1,21 +1,23 @@
-import { LucideIcon } from 'lucide-react'; // Import the LucideIcon type
+// Card.tsx
+import { LucideIcon } from "lucide-react";
 
 interface CardProps {
-  text: string;
-  icon: LucideIcon;
-  onClick?: () => void;
+    text: string;
+    icon: LucideIcon;
+    onClick: () => void;
+    selected: boolean; // New prop to indicate if the card is selected
 }
 
-const Card: React.FC<CardProps> = ({ text, icon: Icon, onClick }) => {
-  return (
-    <div 
-      className="flex flex-col items-center justify-center h-20 w-36 bg-white rounded-lg shadow-lg cursor-pointer hover:translate-y-1 transform transition duration-300 ease-in-out" 
-      onClick={onClick}
-    >
-      <Icon className="w-8 h-8 text-blue-500" />
-      <div className="mt-2 text-center text-black">{text}</div>
-    </div>
-  );
-}
-
-export default Card;
+export const Card: React.FC<CardProps> = ({ text, icon: Icon, onClick, selected }) => {
+    return (
+        <div
+            className={`p-4 border-2 rounded-lg cursor-pointer flex flex-col justify-center items-center 
+                        ${selected ? 'bg-fuchsia-600 text-white' : 'bg-white text-black'} 
+                        hover:bg-fuchsia-200`}
+            onClick={onClick}
+        >
+            <Icon className="w-6 h-6 mb-2" />
+            <div className="text-center font-semibold">{text}</div>
+        </div>
+    );
+};
