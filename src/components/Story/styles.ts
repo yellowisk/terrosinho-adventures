@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const animationFadeIn = css`
+export const animationFadeIn = css`
   animation: fadeIn 0.3s ease;
 
   @keyframes fadeIn {

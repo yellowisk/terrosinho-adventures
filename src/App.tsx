@@ -2,6 +2,7 @@
 // import viteLogo from "/vite.svg";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Quiz from "./pages/Quiz";
 
 const Home = lazy(() => import("../src/pages/Home"));
 const Stories = lazy(() => import("../src/pages/Stories"));
@@ -16,6 +17,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="stories" element={<Stories />} />
             <Route path="simulator" element={<Simulation />}/>
+            <Route path="quiz" element={<Quiz />}/>
           </Route>
         </Routes>
       </Suspense>
