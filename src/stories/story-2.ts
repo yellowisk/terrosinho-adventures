@@ -2,6 +2,7 @@ import { Story } from "../types/story";
 
 export const story2: Story = {
   title: "Story 2",
+  globeImg: "./second_extinction.png",
   cover:
     "https://www.infoescola.com/wp-content/uploads/2010/04/periodo-devoniano-550x493.jpg",
   frames: [
