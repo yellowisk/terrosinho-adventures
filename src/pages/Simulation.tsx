@@ -173,7 +173,11 @@ const Simulation: React.FC = () => {
     return (
         <>
             <div id="simulation">
-                <BackButton />
+                {isStoryModalOpen == false && selectedStory == null && (
+                    <div className="absolute top-0 left-0 z-10 m-16">
+                        <BackButton />
+                    </div>
+                )}
                 <Stories isOpen={isStoryModalOpen} onClose={() => setIsStoryModalOpen(false)} stories={extinctionStories} onSelectStory={(story) => setSelectedStory(story)}/>
                 {(selectedStory || selectedPin?.frame) && <StoryCarousel storyFrames={selectedStory?.frames ?? [selectedPin!.frame!]} onSelectFrame={setSelectedFrameIndex} onClose={() => setSelectedStory(undefined)} />}
                 <Timeline />
