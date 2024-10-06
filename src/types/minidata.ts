@@ -12,9 +12,9 @@ import lasVegas2 from '../assets/minigames_imgs/las_vegas2.png';
 
 const minigame1: MinigameInterface = {
     title: 'Hurricanes have a profound impact on our planet, affecting countless people each time they occur. While their effects can be mitigated, they often are not.',
-    type: SolutionType.wildfire,
-    imageBefore: floods1,
-    imageAfter: floods2,
+    type: SolutionType.hurricane,
+    imageBefore: hurricanes1,
+    imageAfter: hurricanes2,
     question: 'What steps can we take now?',
     options: solutionsData,
     finalScore: 0,
@@ -32,7 +32,7 @@ const minigame2: MinigameInterface = {
 
 const minigame3: MinigameInterface = {
     title: 'Unfortunately, many areas have already been impacted by landslides.',
-    type: SolutionType.flood,
+    type: SolutionType.landslide,
     imageBefore: landslides1,
     imageAfter: landslides2,
     question: 'What steps can we take now?',
@@ -52,7 +52,7 @@ const minigame4: MinigameInterface = {
 
 const minigame5: MinigameInterface = {
     title: 'In an increasingly warmer world, we are unfortunately witnessing a steady rise in wildfires, which are often not managed effectively.',
-    type: SolutionType.badAirQuality,
+    type: SolutionType.wildfire,
     imageBefore: wildfires1,
     imageAfter: wildfires2,
     question: 'What could we have done differently?',

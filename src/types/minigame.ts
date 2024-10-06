@@ -39,7 +39,7 @@ const solutionsData = [
   { Icon: Cross, text: 'Advocate for CO2 emission policy changes and implementation', color: 'red', type: [ SolutionType.badAirQuality ] },
   { Icon: Tornado, text: 'Invest in wind-resistant infrastructure', color: 'gray', type: [ SolutionType.hurricane ] },
   { Icon: Tornado, text: 'Create a hurricane response plan', color: 'gray', type: [ SolutionType.hurricane ] },
-  { Icon: Wind, text: 'Invest in air quality monitoring systems', color: 'red', type: [ SolutionType.badAirQuality ] },
+  { Icon: Wind, text: 'Invest in air quality monitoring systems', color: 'gray', type: [ SolutionType.badAirQuality ] },
 ];
 
 
