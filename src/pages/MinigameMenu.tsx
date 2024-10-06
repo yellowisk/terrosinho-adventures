@@ -13,15 +13,15 @@ const MinigameMenu: React.FC = () => {
     const [selectedMinigame, setSelectedMinigame] = useState<MinigameInterface | null>(null);
 
     const handleMinigameSelect = (minigame: MinigameInterface) => {
-        setSelectedMinigame(minigame); // Set the selected minigame
+        setSelectedMinigame(minigame);
     };
 
     const handleBackToMenu = () => {
-        setSelectedMinigame(null); // Go back to the menu
+        setSelectedMinigame(null);
     };
 
     const handleResetGame = () => {
-        setSelectedMinigame(null); // Reset the game
+        setSelectedMinigame(null);
     };
 
     const minigames = [
@@ -47,7 +47,7 @@ const MinigameMenu: React.FC = () => {
                                 <CardGame
                                     text={minigame.question}
                                     image={lasVegasBefore}
-                                    onClick={() => handleMinigameSelect(minigame)} // Call handleMinigameSelect to select a minigame
+                                    onClick={() => handleMinigameSelect(minigame)}
                                 />
                             </div>
                         ))}

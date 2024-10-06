@@ -18,8 +18,8 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, op
     const scrollRef = useRef<HTMLDivElement>(null);
     const [sliderValue, setSliderValue] = useState(100);
     const [isDragging, setIsDragging] = useState(false);
-    const [optionsSelected, setOptionsSelected] = useState<SolutionOption[]>([]); // Store selected options
-    const [showExplanation, setShowExplanation] = useState(false); // Control popup visibility
+    const [optionsSelected, setOptionsSelected] = useState<SolutionOption[]>([]);
+    const [showExplanation, setShowExplanation] = useState(false);
     
     useEffect(() => {
         setSliderValue(50);
@@ -69,6 +69,10 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, op
         setShowExplanation(true); // Show the Explanation popup when "Submit" is clicked
     };
 
+    const closeExplanationPopUp = () => {
+        setShowExplanation(false); // Close the Explanation popup
+    }
+
     return (
         <div className="h-screen grid grid-rows-[10%_65%_25%]">
             <div className="flex flex-row w-full items-center">
@@ -102,13 +106,13 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, op
                         onMouseDown={handleMouseDown}
                     />
                     <div className="absolute right-0 flex flex-col items-end h-full">
-                        <div className="flex flex-col h-1/2 justify-end py-5 items-center">
+                        <div className="flex flex-col h-1/2 justify-end translate-y-6 py-5 items-center">
                             <Dialog text="What can we do to help?" />
                         </div>
-                        <div className="flex flex-col h-1/2 w-full justify-center items-center">
+                        <div className="flex flex-col h-1/2 w-full justify-center items-center translate-y-6">
                             <ImageContent src={terroso} alt="terroso" />
                         </div>
-                        <div className="flex flex-row w-full justify-center">
+                        <div className="flex flex-row w-full mb-1 justify-center">
                           <Button text="Submit" onClick={openExplanationPopUp} variant='secondary'/>
                         </div>
                     </div>
@@ -137,10 +141,9 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, op
                 </button>
             </div>
 
-            {/* Show the ExplanationPopUp if the user clicks "Submit" */}
             <div className="flex flex-row justify-center mx-20">
               {showExplanation && <ExplanationPopUp type={type} options={optionsSelected} 
-              onReset={onReset} onBack={onBack} />}
+              onReset={closeExplanationPopUp} onBack={onBack} />}
             </div>
         </div>
     );

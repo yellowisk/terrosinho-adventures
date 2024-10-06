@@ -5,8 +5,8 @@ import terrosoExplorer from "../../assets/terroso_imgs/terroso_explorer.png";
 interface ExplanationProps {
     type: SolutionType;
     options: SolutionOption[];
-    onReset: () => void; // For resetting the game (Play Again)
-    onBack: () => void;  // For going back to the menu (Continue)
+    onReset: () => void;
+    onBack: () => void;
 }
 
 const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, onBack }) => {
@@ -24,13 +24,19 @@ const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, 
                         <div className="flex flex-col justify-center">
                             {incorrectOptions.map((option, index) => (
                                 <div key={index} className="flex flex-col items-center mb-4">
-                                    <div className="text-xl text-black font-bold">
-                                        {option.text} Seria melhor para {option.type}
+                                    <div className="flex flex-row justify-between gap-2">
+                                        {/* Display the icon of the incorrect option */}
+                                        <option.Icon className="w-8 h-8 text-black" />
+                                        <div className="text-xl text-black font-bold">
+                                            {option.text} would fit better in a {option.type} situation
+                                        </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        <img src={terrosoExplain} alt="terroso" className="w-48 h-48" />
+                        <div className="flex flex-col justify-center w-full">
+                            <img src={terrosoExplain} alt="terroso" className="w-48 h-48 scale-x-[-1]" />
+                        </div>
                     </div>
                 ) : (
                     <div className="flex flex-col items-center">
@@ -38,22 +44,23 @@ const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, 
                     </div>
                 )}
 
-                {/* If the user is wrong, they get "Play Again", otherwise "Continue" */}
-                {incorrectOptions.length > 0 ? (
-                    <button
-                        className="mt-6 px-4 py-2 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-800"
-                        onClick={onReset}  // Reset game if they play again
-                    >
-                        Play Again
-                    </button>
-                ) : (
-                    <button
-                        className="mt-6 px-4 py-2 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-800"
-                        onClick={onBack}  // Go back to the menu if they continue
-                    >
-                        Continue
-                    </button>
-                )}
+                <div className="flex flex-row justify-center">
+                    {incorrectOptions.length > 0 ? (
+                        <button
+                            className="mt-6 px-4 py-2 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-800"
+                            onClick={onReset}  // Reset game if they play again
+                        >
+                            Play Again
+                        </button>
+                    ) : (
+                        <button
+                            className="mt-6 px-4 py-2 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-800"
+                            onClick={onBack}  // Go back to the menu if they continue
+                        >
+                            Continue
+                        </button>
+                    )}
+                </div>
             </div>
         </div>
     );
