@@ -6,8 +6,3 @@ export interface Pin {
     lng: number,
     frame?: StoryFrame,
 }
-
-export type PinFrame = {
-    label: string,
-    imgs: string[],
-}
