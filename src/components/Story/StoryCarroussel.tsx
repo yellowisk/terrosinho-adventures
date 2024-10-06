@@ -70,8 +70,8 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
         <S.Terroso src={currentFrame.terrosoImg} />
       </S.Footer>
       <S.FramesContainer>
-        {currentFrame?.frameLeft && (
-          <S.Frame>
+        {currentFrame.frameLeft &&  (
+          <S.Frame className={(currentFrame.frameLeft.description || currentFrame.frameLeft.title)?"":"invisible"}>
             <S.FrameTitle>{currentFrame.frameLeft.title}</S.FrameTitle>
             {currentFrame.frameLeft.image && (
               <S.FrameImage src={currentFrame.frameLeft.image} />

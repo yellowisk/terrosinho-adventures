@@ -3,8 +3,8 @@ import Globe, { GlobeMethods } from "react-globe.gl";
 import { useNavigate } from "react-router-dom";
 
 import BackButton from "../components/BackButton";
-
 import TimePoint from "../components/TimePoint";
+import * as S from "../components/Story/styles";
 
 import { Pin } from "../types/pins";
 import { Story } from "../types/story";
@@ -18,6 +18,8 @@ import { story5 } from "../stories/story-5";
 import { story6 } from "../stories/story-6";
 import StoryCarousel from "../components/Story/StoryCarroussel";
 import { Connection } from "../types/connection";
+import { createRoot } from "react-dom/client";
+import { flushSync } from "react-dom";
 
 
 interface EarthSimulationProps {
@@ -58,9 +60,12 @@ export const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, back
     }, [connections, pins])
 
     const formatPin = (pinObj: object) => {
+        let pinOpen = false;
+
         const pin = pinObj as Pin;
         const p = document.createElement('div');
         const svg = document.createElement('svg');
+
         p.className = 'flex flex-col flex-wrap items-center justify-center';
 
         const toolTip = document.createElement('div');
@@ -72,6 +77,28 @@ export const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, back
         toolTip.style.borderRadius = '5px';
         toolTip.style.transform = 'translate(0, -100%)';
 
+        const fDiv = document.createElement('div');
+
+        const frame = createRoot(fDiv);
+
+        flushSync(() => {
+            frame.render(
+                <S.Frame >
+                    <S.FrameTitle>{pin.frame?.frameLeft!.title}</S.FrameTitle>
+                    {pin.frame?.frameLeft!.imgs!.map((img) => {
+                        return (
+                            <S.FrameImage src={img} />
+                        );
+                    })}
+                    <S.FrameDescription>
+                        {pin.frame?.frameLeft!.description}
+                    </S.FrameDescription>
+                </S.Frame>
+            );
+        })
+
+        fDiv.className = 'pointer-events-none invisible absolute'
+
         svg.setHTMLUnsafe('<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="red" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>')
 
         // Lucide map-pin icon
@@ -79,13 +106,23 @@ export const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, back
 
         svg.style.transform = 'translate(0, -100%)';
 
+        p.append(fDiv);
         p.appendChild(toolTip);
         p.appendChild(svg);
         p.style.pointerEvents = 'auto';
         p.style.cursor = 'pointer';
         p.onmouseenter = () => toolTip.style.visibility = 'visible';
         p.onmouseleave = () => toolTip.style.visibility = 'hidden';
-        p.onclick = () => setSelectedPin(pin);
+        p.onclick = () => {
+            pinOpen = !pinOpen;
+            if (pinOpen) {
+                fDiv.className = 'pointer-events-none visible absolute w-80 transform -translate-x-44';
+                svg.style.color = 'blue';
+            } else {
+                fDiv.className = 'pointer-events-none invisible absolute';
+                svg.style.color = 'red';
+            }
+        };
         return p;
     }
 
@@ -175,7 +212,7 @@ const Simulation: React.FC = () => {
             <div id="simulation">
                 {isStoryModalOpen == false && selectedStory == null && (
                     <div className="absolute top-0 left-0 z-10 m-16">
-                        <BackButton onClick={() => {navigate('/')}}/>
+                        <BackButton onClick={() => {navigate('/home')}}/>
                     </div>
                 )}
                 <Stories isOpen={isStoryModalOpen} onClose={() => setIsStoryModalOpen(false)} stories={extinctionStories} onSelectStory={(story) => setSelectedStory(story)}/>
@@ -183,7 +220,7 @@ const Simulation: React.FC = () => {
                 <Timeline />
                 <EarthSimulation 
                     imageUrl={selectedStory?.globeImg || "./nowadays.png"}
-                    pins={selectedStory?.frames[selectedFrameIndex].pins || []}
+                    pins={selectedStory?.frames[selectedFrameIndex]?.pins || []}
                     globeRef={globeRef}
                     backgroundUrl={backgroundUrl}
                     setSelectedPin={setSelectedPin}
