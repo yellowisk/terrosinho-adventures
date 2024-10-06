@@ -11,16 +11,6 @@ import lasVegas1 from '../assets/minigames_imgs/las_vegas1.png';
 import lasVegas2 from '../assets/minigames_imgs/las_vegas2.png';
 
 const minigame1: MinigameInterface = {
-    title: 'Hurricanes have a profound impact on our planet, affecting countless people each time they occur. While their effects can be mitigated, they often are not.',
-    type: SolutionType.hurricane,
-    imageBefore: hurricanes1,
-    imageAfter: hurricanes2,
-    question: 'What steps can we take now?',
-    options: solutionsData,
-    finalScore: 0,
-};
-
-const minigame2: MinigameInterface = {
     title: 'In densely populated cities, individuals often build homes in high-risk areas, such as hills and slopes, which can unfortunately lead to landslides.',
     type: SolutionType.landslide,
     imageBefore: landslides1,
@@ -30,11 +20,21 @@ const minigame2: MinigameInterface = {
     finalScore: 0,
 };
 
-const minigame3: MinigameInterface = {
+const minigame2: MinigameInterface = {
     title: 'Unfortunately, many areas have already been impacted by landslides.',
     type: SolutionType.landslide,
     imageBefore: landslides1,
     imageAfter: landslides2,
+    question: 'What steps can we take now?',
+    options: solutionsData,
+    finalScore: 0,
+};
+
+const minigame3: MinigameInterface = {
+    title: 'Hurricanes have a profound impact on our planet, affecting countless people each time they occur. While their effects can be mitigated, they often are not.',
+    type: SolutionType.hurricane,
+    imageBefore: hurricanes1,
+    imageAfter: hurricanes2,
     question: 'What steps can we take now?',
     options: solutionsData,
     finalScore: 0,
@@ -71,16 +71,6 @@ const minigame6: MinigameInterface = {
 };
 
 const minigame7: MinigameInterface = {
-    title: 'Urban expansion and asphalt paving, which impermeabilize the soil, combined with inadequate urban planning, lead to severe consequences like flooding.',
-    type: SolutionType.flood,
-    imageBefore: floods1,
-    imageAfter: floods2,
-    question: 'What can we do now?',
-    options: solutionsData,
-    finalScore: 0
-};
-
-const minigame8: MinigameInterface = {
     title: 'In a world of expanding cities, burgeoning industries, and shrinking green spaces, we are facing unprecedented declines in air quality',
     type: SolutionType.badAirQuality,
     imageBefore: lasVegas1,
@@ -90,11 +80,21 @@ const minigame8: MinigameInterface = {
     finalScore: 0
 };
 
-const minigame9: MinigameInterface = {
+const minigame8: MinigameInterface = {
     title: 'unfortunately, the air quality is in the worst state it has ever been, what can we do now?',
     type: SolutionType.badAirQuality,
     imageBefore: lasVegas1,
     imageAfter: lasVegas2,
+    question: 'What can we do now?',
+    options: solutionsData,
+    finalScore: 0
+};
+
+const minigame9: MinigameInterface = {
+    title: 'Urban expansion and asphalt paving, which impermeabilize the soil, combined with inadequate urban planning, lead to severe consequences like flooding.',
+    type: SolutionType.flood,
+    imageBefore: floods1,
+    imageAfter: floods2,
     question: 'What can we do now?',
     options: solutionsData,
     finalScore: 0
