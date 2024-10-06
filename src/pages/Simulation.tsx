@@ -1,6 +1,8 @@
 import React from "react";
 import Globe, { GlobeMethods } from "react-globe.gl";
 
+import BackButton from "../components/BackButton";
+
 import TimePoint from "../components/TimePoint";
 
 import { Pin } from "../types/pins";
@@ -138,13 +140,13 @@ const Simulation: React.FC = () => {
     }
 
     React.useEffect(() => {
-        // rotate(globeRef);
+        rotate(globeRef);
     }, []);
 
     React.useEffect(() => {
         setImageUrl(selectedStory?.globeImg)
         setIsStoryModalOpen(false);
-        // rotate(globeRef);
+        rotate(globeRef);
     }, [selectedStory]);
 
     React.useEffect(() => {
@@ -171,6 +173,7 @@ const Simulation: React.FC = () => {
     return (
         <>
             <div id="simulation">
+                <BackButton />
                 <Stories isOpen={isStoryModalOpen} onClose={() => setIsStoryModalOpen(false)} stories={extinctionStories} onSelectStory={(story) => setSelectedStory(story)}/>
                 {(selectedStory || selectedPin?.frame) && <StoryCarousel storyFrames={selectedStory?.frames ?? [selectedPin!.frame!]} onSelectFrame={setSelectedFrameIndex} onClose={() => setSelectedStory(undefined)} />}
                 <Timeline />

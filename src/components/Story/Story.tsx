@@ -25,7 +25,7 @@ const StoryCover: React.FC<StoryCoverProps> = ({ story, className, onSelected })
     <>
       <S.StoryCard onClick={handleClick} className={className}>
         <S.ImageCover alt={story.title} src={story.cover} />
-        <span>{story.title}</span>
+        <span>{story.title.split(' ')[0]}</span>
       </S.StoryCard>
       {isOpen && <StoryCarousel storyFrames={story.frames} onClose={handleClose} />}
     </>

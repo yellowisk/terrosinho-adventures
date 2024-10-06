@@ -31,21 +31,21 @@ export const Container = styled.div`
 export const StoryCard = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #ffffff05;
+  background-color: #ffffff10;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  margin: 16px;
+  padding: 18px;
+  aspect-ratio: 1 / 1;
   max-width: fit-content;
   border: 2px solid transparent;
   transition: border-color 0.3s ease;
   border-radius: 10px;
   &:hover {
-    border-color: white;
+    border-color: #ffffff90;
   }
   cursor: pointer;
   span {
-    font-size: 24px;
+    font-size: 1.24dvw;
     color: white;
     text-overflow: ellipsis;
   }
@@ -58,8 +58,8 @@ export const ImageCover = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  width: 200px;
+  aspect-ratio: 1 / 1;
+  width: 200lvw;
   margin: 16px;
   cursor: pointer;
   object-fit: cover;
@@ -82,7 +82,10 @@ export const FramesContainer = styled.div`
 export const Frame = styled.div`
   width: 30%;
   height: fit-content;
-
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: hidden;
   margin-top: 32px;
   padding: 16px;
   border-radius: 10px;
@@ -102,6 +105,7 @@ export const FrameImage = styled.img`
 export const FrameTitle = styled.h1`
   font-size: 24px;
   color: white;
+  font-weight: 700;
 `;
 
 export const FrameDescription = styled.p`
