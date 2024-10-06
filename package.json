@@ -7,16 +7,19 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview" 
+    "preview": "vite preview"
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.10",
     "lucide-react": "^0.447.0",
     "react": "^18.3.1",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18.3.1",
     "react-globe.gl": "^2.27.2",
+    "react-hook-form": "^7.53.0",
     "shadcn-ui": "^0.9.2",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.13",
+    "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

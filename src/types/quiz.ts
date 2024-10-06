@@ -1,12 +1,10 @@
-type Quiz = {
-    questions: Array<{
-        question: string;
-        options: Array<{
-            text: string;
-            correct: boolean;
-        }>;
-    }>;
-    finalScore: number;
-}
+export type Options = {
+  text: string;
+  correct?: boolean;
+};
 
-export default Quiz;
+export type Question = {
+  question: string;
+  options: Options[];
+};
+
