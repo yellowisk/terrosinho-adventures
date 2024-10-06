@@ -118,7 +118,6 @@ const Simulation: React.FC = () => {
     const [selectedFrameIndex, setSelectedFrameIndex] = React.useState<number>(0);
 
     const [backgroundUrl, setBackgroundUrl] = React.useState<string>("");
-    const [imageUrl, setImageUrl] = React.useState<string | undefined>("");
 
     const globeRef = React.useRef<GlobeMethods | undefined>();
     const rotate = async (globeRef: React.MutableRefObject<GlobeMethods | undefined>) => {
@@ -144,7 +143,6 @@ const Simulation: React.FC = () => {
     }, []);
 
     React.useEffect(() => {
-        setImageUrl(selectedStory?.globeImg)
         setIsStoryModalOpen(false);
         rotate(globeRef);
     }, [selectedStory]);
@@ -182,7 +180,7 @@ const Simulation: React.FC = () => {
                 {(selectedStory || selectedPin?.frame) && <StoryCarousel storyFrames={selectedStory?.frames ?? [selectedPin!.frame!]} onSelectFrame={setSelectedFrameIndex} onClose={() => setSelectedStory(undefined)} />}
                 <Timeline />
                 <EarthSimulation 
-                    imageUrl={imageUrl ? imageUrl:"./nowadays.png"}
+                    imageUrl={selectedStory?.globeImg || "./nowadays.png"}
                     pins={selectedStory?.frames[selectedFrameIndex].pins || []}
                     globeRef={globeRef}
                     backgroundUrl={backgroundUrl}

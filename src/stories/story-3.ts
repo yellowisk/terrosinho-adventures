@@ -2,6 +2,7 @@ import { Story } from "../types/story";
 
 export const story3: Story = {
   title: "Story 3",
+  globeImg: "./third_extinction.png",
   cover:
     "assets/stories_imgs/lycosuchus.png",
   frames: [
