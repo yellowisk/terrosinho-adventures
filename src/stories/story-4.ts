@@ -1,7 +1,7 @@
 import { Story } from "../types/story";
 
 export const story4: Story = {
-  title: "Story 4",
+  title: "Triassic-Jussaric ~201.5mya",
   globeImg: "./fourth_extinction.png",
   cover:
     "https://th.bing.com/th/id/R.48723269838305f04a7adfdb12359bfe?rik=lOzESyn2ARD%2bcg&pid=ImgRaw&r=0",
@@ -14,7 +14,7 @@ export const story4: Story = {
       },
       frameRight: {
         image: "https://images.dinosaurpictures.org/eoraptor-beingthepredator-tuomaskoivurinne-2009_9a56.jpg",
-        title: "Dinosaur",
+        title: "Ancient Dinosaur",
       },
       frameCenter: {
         description: "We are now in the Triassic. There are still some remnants of Pangaea, but a significant portion of the land is still concentrated in a massive continent. Some dinosaurs roamed the land, alongside other reptiles, amphibians, and the first mammals, which were small and shrew-like. In the oceans, a variety of marine life, including ammonites, mollusks, and marine reptiles, flourished.",

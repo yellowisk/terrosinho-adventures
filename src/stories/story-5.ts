@@ -1,7 +1,7 @@
 import { Story } from "../types/story";
 
 export const story5: Story = {
-  title: "Story 5",
+  title: "Cretaceous-Paleogene ~66mya",
   globeImg: "./fifth_extinction.png",
   cover:
     "https://images.ctfassets.net/cnu0m8re1exe/59qssnh6iHfxY2r3FrctNZ/195cca2a860caed3b434a2d3de1ea555/trex.jpg?fm=jpg&fl=progressive&w=660&h=433&fit=fill",

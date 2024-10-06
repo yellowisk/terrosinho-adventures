@@ -29,8 +29,7 @@ interface EarthSimulationProps {
   pins: Pin[];
 }
 
-const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, backgroundUrl, globeRef, pins, setSelectedPin, connections }) => {
-    
+export const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, backgroundUrl, globeRef, pins, setSelectedPin, connections }) => {
     interface Arc {
         startLat: number;
         startLng: number;
