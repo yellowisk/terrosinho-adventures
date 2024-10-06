@@ -47,7 +47,7 @@ const Stories: React.FC<StoryProps> = ({
         <div className="overflow-y-hidden absolute bottom-3 p-16 bg-black/70 z-20 h-full overflow-hidden pointer-events-none">
           <BackButton onClick={onClose} />
           <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 drop-shadow-lg mb-8">
-            Stories
+            Timeline
           </h1>
           <StoriesContainer className="z-20 flex flex-row">
             {stories.map((story) => (
@@ -59,7 +59,7 @@ const Stories: React.FC<StoryProps> = ({
                 />
                 <div className="flex items-center mt-4 justify-center">
                   <span className="z-0 px-2 py-1 text-sm font-semibold text-gray-800 bg-gray-200 bg-opacity-40 rounded-full">
-                    {story.title.split(' ')[1]}
+                    {story.title.includes('Late') ? story.title.split(' ')[2] :story.title.split(' ')[1]}
                   </span>
                 </div>
               </div>

@@ -45,15 +45,16 @@ export const StoryCard = styled.div`
   }
   cursor: pointer;
   span {
-    font-size: 1.24dvw;
+    text-align: center;
+    font-size: 1.20dvw;
     color: white;
     text-overflow: ellipsis;
+    font-weight: 500;
   }
 `;
 
 export const ImageCover = styled.img`
   border-radius: 10px;
-
   position: relative;
   display: flex;
   justify-content: center;
