@@ -3,7 +3,7 @@ import terroso from "../assets/terroso_imgs/terroso_caveman.png";
 import co2 from "../assets/imgs_st6/Co2.gif"
 import aral from "../assets/imgs_st6/aral.gif";
 import amazonia from "../assets/imgs_st6/amazonia_fogo.gif";
-import seaLevelPng from "../assets/imgs_st6/seaLevel.png";
+import seaLevelPng from "../assets/imgs_st6/SeaLevel.png";
 import seaLvelGif from "../assets/imgs_st6/sea_level.gif";
 import landIceGreenland from "../assets/imgs_st6/LandIceGreenland.png";
 import iceMelting from "../assets/imgs_st6/ice_melting.gif";
