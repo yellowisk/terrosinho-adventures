@@ -119,7 +119,7 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
                 </div>
             </div>
 
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center overflow-hidden">
                 <div className="flex items-center overflow-hidden">
                     <button onClick={scrollLeft} className="text-red-600 p-2">
                         <ArrowLeft className="h-6 w-6" />
@@ -129,10 +129,11 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
                             {options.map((option, index) => (
                                 <Card
                                     key={index}
-                                    text={option.SolutionOptions.text}
-                                    icon={option.SolutionOptions.Icon as LucideIcon}
-                                    selected={isOptionSelected(option.SolutionOptions)}
-                                    onClick={() => computePoints(option.SolutionOptions)}
+                                    text={option.text}
+                                    icon={option.Icon as LucideIcon}
+                                    selected={isOptionSelected(option)}
+                                    color={option.color}
+                                    onClick={() => computePoints(option)}
                                 />
                             ))}
                         </div>
