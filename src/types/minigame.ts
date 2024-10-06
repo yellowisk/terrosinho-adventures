@@ -42,5 +42,6 @@ const solutionsData = [
   { Icon: Wind, text: 'Invest in air quality monitoring systems', color: 'red', type: [ SolutionType.badAirQuality ] },
 ];
 
+
 export type { MinigameInterface, SolutionOption };
 export { SolutionType, solutionsData };

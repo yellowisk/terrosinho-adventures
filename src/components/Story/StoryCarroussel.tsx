@@ -6,14 +6,22 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 type StoryCarouselProps = {
   storyFrames: StoryFrame[];
   onClose: () => void;
+  onSelectFrame?: (index: number) => void;
 };
 
 const StoryCarousel: React.FC<StoryCarouselProps> = ({
   storyFrames,
   onClose,
+  onSelectFrame,
 }) => {
   const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
   const currentFrame = storyFrames[currentFrameIndex];
+
+  React.useEffect(() => {
+    if (onSelectFrame) {
+      onSelectFrame(currentFrameIndex);
+    }
+  }, [currentFrameIndex, onSelectFrame]);
 
   const handleNext = (currentFrame: number) => {
     if (currentFrame < storyFrames.length - 1) {
@@ -37,7 +45,7 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
         <X />
       </S.BackIcon>
       <S.FramesContainer>
-        {currentFrame.frameLeft && (
+        {currentFrame?.frameLeft && (
           <S.Frame>
             <S.FrameTitle>{currentFrame.frameLeft.title}</S.FrameTitle>
             {currentFrame.frameLeft.image && (
