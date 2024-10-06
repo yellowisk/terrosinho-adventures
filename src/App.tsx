@@ -2,12 +2,11 @@
 // import viteLogo from "/vite.svg";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MinigameMenu from "./pages/MinigameMenu";
 
 const Home = lazy(() => import("../src/pages/Home"));
 const Stories = lazy(() => import("../src/pages/Stories"));
 const Simulation = lazy(() => import("../src/pages/Simulation"));
-const Minigame = lazy(() => import("../src/pages/Minigame"));
+const MinigameMenu = lazy(() => import("../src/pages/MinigameMenu"));
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="stories" element={<Stories />} />
             <Route path="simulator" element={<Simulation />}/>
             <Route path="minigamemenu" element={<MinigameMenu />} />
           </Route>
