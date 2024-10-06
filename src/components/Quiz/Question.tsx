@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { FieldValues, useForm, UseFormRegister } from "react-hook-form";
-import styled from "styled-components";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Question as QuestionType } from "../../types/quiz";
 import Input from "./Input";
 import AnswerFeedback from "./AnswerFeedback";
@@ -9,26 +8,24 @@ import FinishFeedback from "./FinishFeedback";
 type QuestionProps = {
   quiz: QuestionType[];
 };
-type Data = {
-  option: string;
-};
+
 
 const Question: React.FC<QuestionProps> = ({ quiz }) => {
   const { register, handleSubmit, setValue } = useForm();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [isFinished, setIsFinished] = useState(false);
+  const [score, setScore] = useState(0);
   const [selected, setSelected] = useState<{
     optionKey: string;
     value: string;
   }>({ optionKey: "", value: "" });
-  let score = 0;
 
-  const onSubmit = (data: Data) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data: FieldValues) => {
     const selectedOption = data.option;
     if (selectedOption === "correct") {
       console.log("Correct answer!");
-      score++;
+      setScore(prev => prev + 1);
       if (currentQuestion === quiz.length - 1) {
         console.log("Quiz completed!");
         setIsFinished(true);
