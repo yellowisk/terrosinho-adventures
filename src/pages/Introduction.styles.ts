@@ -78,7 +78,7 @@ export const Legend = styled.h1<{ align: "center" | "top" | "bottom" }>`
 
 export const Gif = styled.img`
   border-radius: 50%;
-  width: 30lvw;
+  height: 70lvh;
   aspect-ratio: 1 / 1;
   align-self: center;
   object-fit: cover;
