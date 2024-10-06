@@ -7,11 +7,11 @@ interface CardProps {
 const CardGame: React.FC<CardProps> = ({ text, onClick, image }) => {
     return (
       <div 
-        className="flex flex-col items-center justify-center h-48 w-48 bg-white rounded-lg shadow-lg cursor-pointer hover:translate-y-1 transform transition duration-300 ease-in-out" 
+        className="flex flex-col items-center justify-center h-48 w-48 bg-gradient-to-tl from-purple-500  to-purple-700 hover:bg-gradient-to-br rounded-2xl shadow-lg cursor-pointer hover:translate-y-1 transform transition-all duration-300 ease-in-out"
         onClick={onClick}
       >
-        <img src={image} className="w-24 h-24 rounded-full" />
-        <div className="mt-2 text-center text-black text-2xl">{text}</div>
+        <img src={image} className="w-full h-24 rounded-2xl" />
+        <div className="text-center text-black text-2xl">{text}</div>
       </div>
     );
   }
