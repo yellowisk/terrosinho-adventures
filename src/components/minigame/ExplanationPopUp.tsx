@@ -9,29 +9,31 @@ interface ExplanationProps {
     options: SolutionOption[];
     onReset: () => void;
     onBack: () => void;
+    maxScorePossible: number;
 }
 
-const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, onBack }) => {
+const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, onBack, maxScorePossible }) => {
     const incorrectOptions: SolutionOption[] = [];
-    console.log(options);
+    const correctOptions: SolutionOption[] = [];
 
     options.forEach((option) => {
         const isCorrectOption = option.type.includes(type);
         if (!isCorrectOption) {
-            console.log("Incorrect option: ", option);
             incorrectOptions.push(option);
+        } else {
+            correctOptions.push(option);
         }
     });
 
     const formatTypes = (types: SolutionType[]) => {
         if (types.length === 1) {
-            return types[0]; // Single type, no need for "and"
+            return types[0];
         } else if (types.length === 2) {
-            return `${types[0]} and ${types[1]}`; // Two types, use "and" without commas
+            return `${types[0]} and ${types[1]}`;
         } else {
-            const allButLast = types.slice(0, -1).join(", "); // Join all but last with commas
-            const last = types[types.length - 1]; // Last type
-            return `${allButLast}, and ${last}`; // Use Oxford comma and "and"
+            const allButLast = types.slice(0, -1).join(", ");
+            const last = types[types.length - 1];
+            return `${allButLast}, and ${last}`;
         }
     };
 
@@ -63,11 +65,20 @@ const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, 
                 ) : (
                     <div className="flex flex-col items-center">
                         <img src={terrosoExplorer} alt="terroso" className="w-44 h-52" />
+                        { maxScorePossible > correctOptions.length ? (
+                            <div className="text-white text-lg mt-4">
+                                You have found {correctOptions.length} out of {maxScorePossible} solutions. Keep exploring!
+                            </div>
+                        ) : (
+                            <div className="text-white text-lg mt-4">
+                                You have found all {maxScorePossible} solutions. Great job!
+                            </div>
+                        )}
                     </div>
                 )}
 
                 <div className="flex flex-row justify-center">
-                    {incorrectOptions.length > 0 ? (
+                    {incorrectOptions.length > 0 || maxScorePossible > correctOptions.length ? (
                         <Button text="Play Again" onClick={onReset} variant='primary'/>
                     ) : (
                         <Button text="Continue" onClick={onBack} variant='primary'/>
