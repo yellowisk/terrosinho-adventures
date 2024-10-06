@@ -14,7 +14,7 @@ interface GameProps extends MinigameInterface {
     onReset: () => void; 
 }
 
-const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, options, finalScore, onBack, onReset }) => {
+const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, title, options, finalScore, onBack, onReset }) => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const [sliderValue, setSliderValue] = useState(100);
     const [isDragging, setIsDragging] = useState(false);
@@ -66,22 +66,22 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, op
     };
 
     const openExplanationPopUp = () => {
-        setShowExplanation(true); // Show the Explanation popup when "Submit" is clicked
+        setShowExplanation(true);
     };
 
     const closeExplanationPopUp = () => {
-        setShowExplanation(false); // Close the Explanation popup
+        setShowExplanation(false);
     }
 
     return (
-        <div className="h-screen grid grid-rows-[10%_65%_25%]">
+        <div className="h-screen grid lg:grid-rows-[15%_60%_20%] grid-rows-[20%_55%_25%]">
             <div className="flex flex-row w-full items-center">
                 <div className="flex flex-row justify-start">
                     <ArrowLeft className="text-red-600 cursor-pointer" onClick={onBack} />
                 </div>
                 <div className="flex flex-row justify-center grow">
-                    <div className="text-2xl px-2 mx-3 font-bold rounded-3xl bg-gradient-to-tr from-fuchsia-500 to-fuchsia-800 text-white">
-                        {question}
+                    <div className="sm:text-2xl sm:px-2  mx-3 sm:font-bold sm:rounded-3xl bg-gradient-to-tr from-fuchsia-500 to-fuchsia-800 text-white text-lg rounded-xl font-medium :">
+                        {title}
                     </div>
                 </div>
             </div>
@@ -106,10 +106,10 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, op
                         onMouseDown={handleMouseDown}
                     />
                     <div className="absolute right-0 flex flex-col items-end h-full">
-                        <div className="flex flex-col h-1/2 justify-end translate-y-6 py-5 items-center">
-                            <Dialog text="What can we do to help?" />
+                        <div className="flex flex-col h-1/2 justify-end lg:-translate-y-0 -translate-y-3 py-5 items-center">
+                            <Dialog text={question} />
                         </div>
-                        <div className="flex flex-col h-1/2 w-full justify-center items-center translate-y-6">
+                        <div className="flex flex-col h-1/2 w-full justify-center items-center lg:translate-y-3 -translate-y-0">
                             <ImageContent src={terroso} alt="terroso" />
                         </div>
                         <div className="flex flex-row w-full mb-1 justify-center">
@@ -119,26 +119,28 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, op
                 </div>
             </div>
 
-            <div className="flex items-center overflow-hidden">
-                <button onClick={scrollLeft} className="text-red-600 p-2">
-                    <ArrowLeft className="h-6 w-6" />
-                </button>
-                <div className="overflow-hidden flex flex-row" ref={scrollRef}>
-                    <div className="flex flex-row space-x-4 p-2">
-                        {options.map((option, index) => (
-                            <Card
-                                key={index}
-                                text={option.SolutionOptions.text}
-                                icon={option.SolutionOptions.Icon as LucideIcon}
-                                selected={isOptionSelected(option.SolutionOptions)} // Pass selected status
-                                onClick={() => computePoints(option.SolutionOptions)}
-                            />
-                        ))}
+            <div className="flex flex-col justify-center">
+                <div className="flex items-center overflow-hidden">
+                    <button onClick={scrollLeft} className="text-red-600 p-2">
+                        <ArrowLeft className="h-6 w-6" />
+                    </button>
+                    <div className="overflow-hidden flex flex-row" ref={scrollRef}>
+                        <div className="flex flex-row space-x-4 p-2">
+                            {options.map((option, index) => (
+                                <Card
+                                    key={index}
+                                    text={option.SolutionOptions.text}
+                                    icon={option.SolutionOptions.Icon as LucideIcon}
+                                    selected={isOptionSelected(option.SolutionOptions)}
+                                    onClick={() => computePoints(option.SolutionOptions)}
+                                />
+                            ))}
+                        </div>
                     </div>
+                    <button onClick={scrollRight} className="text-red-600 p-2">
+                        <ArrowRight className="h-6 w-6" />
+                    </button>
                 </div>
-                <button onClick={scrollRight} className="text-red-600 p-2">
-                    <ArrowRight className="h-6 w-6" />
-                </button>
             </div>
 
             <div className="flex flex-row justify-center mx-20">

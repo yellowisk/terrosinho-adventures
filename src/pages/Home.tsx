@@ -5,9 +5,9 @@ const Button = lazy(() => import("../components/Button"));
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleStoriesClick = useCallback(() => {
-    console.log("Stories button clicked");
-    navigate("/stories");
+  const handleQuizClick = useCallback(() => {
+    console.log("Quiz button clicked");
+    navigate("/quiz");
   }, [navigate]);
 
   const handleSimulatorClick = useCallback(() => {
@@ -26,12 +26,9 @@ const Home: React.FC = () => {
        TERROSO
       </h1>
       <div className="flex justify-center mt-10 gap-10">
-        <Button
-          onClick={handleSimulatorClick}
-          text="Simulator"
-          variant="secondary"
-        />
+        <Button onClick={handleSimulatorClick} text="Simulator" variant="secondary" />
         <Button onClick={handleGamesClick} text="Minigame" variant="tertiary" />
+        <Button onClick={handleQuizClick} text="Quiz" variant="primary" />
       </div>
     </div>
   );

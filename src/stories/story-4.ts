@@ -2,37 +2,40 @@ import { Story } from "../types/story";
 
 export const story4: Story = {
   title: "Story 4",
-  backgroundImg:
-    "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80",
   cover:
-    "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80",
+    "https://th.bing.com/th/id/R.48723269838305f04a7adfdb12359bfe?rik=lOzESyn2ARD%2bcg&pid=ImgRaw&r=0",
   frames: [
     {
-      terrosoImg: "src/assets/terroso_imgs/terroso_caveman.png",
+      terrosoImg: "assets/terroso_imgs/terroso_caveman.png",
       frameLeft: {
-        image: "src/assets/terroso_imgs/terroso_caveman.png",
-        title: "asdasdasdasdasdas",
-        description: "asdasdasdasdasdas",
-      },
-      frameCenter: {
-        description: "asdasdasdasdasdas",
-      },
-    },
-    {
-      terrosoImg: "src/assets/terroso_imgs/terroso_caveman.png",
-      frameCenter: {
-        description: "siudhsihfiuhfs",
+        image: "https://assets.newatlas.com/dims4/default/7627dc3/2147483647/strip/true/crop/2134x1423+0+40/resize/840x560!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2F7c%2F9e%2F592cd1924a9387aa07a725f3192e%2Fbrasilodon.png",
+        title: "Shrew",
       },
       frameRight: {
-        image: "src/assets/terroso_imgs/terroso_caveman.png",
-        title: "asdasdasdasdasdas",
+        image: "https://images.dinosaurpictures.org/eoraptor-beingthepredator-tuomaskoivurinne-2009_9a56.jpg",
+        title: "Dinosaur",
+      },
+      frameCenter: {
+        description: "We are now in the Triassic. There are still some remnants of Pangaea, but a significant portion of the land is still concentrated in a massive continent. Some dinosaurs roamed the land, alongside other reptiles, amphibians, and the first mammals, which were small and shrew-like. In the oceans, a variety of marine life, including ammonites, mollusks, and marine reptiles, flourished.",
       },
     },
     {
-      terrosoImg: "src/assets/terroso_imgs/terroso_caveman.png",
+      terrosoImg: "assets/terroso_imgs/terroso_sad.png",
       frameCenter: {
-        description: "siudhsihfiuhfs",
+        description: "The Triassic ended and the famous Jurassic started with the fourth mass extinction of the Big Five that we’ve been going through so far. The causes of the Triassic-Jurassic extinction remain a topic of scientific debate. One hypothesis suggests a significant increase in volcanic activity. This activity was primarily caused by underwater volcanic eruptions in the Central Atlantic Magmatic Province (CAMP), which led to substantial biochemical changes in both the atmosphere and the oceans.",
       },
     },
+    {
+      terrosoImg: "src/assets/terroso_imgs/terroso_flabbergasted.png",
+      frameCenter: {
+        description: "Another possibility is meteor or meteorite impacts. Evidence supporting this theory includes the presence of craters that may have been formed by such impacts. Another possible factor is the release of large quantities of CO2 into the atmosphere caused by the fragmentation of Pangaea, resulting in a high greenhouse effect, which led to a rise in global temperatures. Does this sound familiar to you?",
+      },
+    },
+    {
+      terrosoImg: "assets/terroso_imgs/terroso_normal.png",
+      frameCenter: {
+        description: "With the extinction of a vast number of species, many ecological niches — essentially the roles that species play in an ecosystem — were left vacant. allowing surviving species to expand their populations. Over geologic time, these species gave rise to new species through evolutionary processes. In this context, the surviving dinosaurs began establishing terrestrial and marine ecosystems.",
+      },
+    }
   ],
 };
