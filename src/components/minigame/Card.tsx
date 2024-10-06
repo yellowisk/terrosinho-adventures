@@ -5,19 +5,24 @@ interface CardProps {
     text: string;
     icon: LucideIcon;
     onClick: () => void;
-    selected: boolean; // New prop to indicate if the card is selected
+    selected: boolean;
+    color: string;
 }
 
-export const Card: React.FC<CardProps> = ({ text, icon: Icon, onClick, selected }) => {
+export const Card: React.FC<CardProps> = ({ text, icon: Icon, onClick, selected, color }) => {
     return (
         <div
-            className={`p-4 border-2 rounded-lg cursor-pointer flex flex-col justify-center items-center 
+            className={`border-2 rounded-lg cursor-pointer flex flex-col justify-center items-center p-4
                         ${selected ? 'bg-fuchsia-600 text-white' : 'bg-white text-black'} 
                         hover:bg-fuchsia-200`}
             onClick={onClick}
-        >
-            <Icon className="w-6 h-6 mb-2" />
-            <div className="text-center font-semibold">{text}</div>
+        >   
+            <Icon className={`w-6 h-6 mb-2 text-${color}-600`} />
+            <div className='text-center px-16 font-semibold flex-grow overflow-hidden'>
+                <div className='overflow-hidden whitespace-nowrap text-ellipsis line-clamp-2'>
+                    {text}
+                </div>
+            </div>
         </div>
     );
 };
