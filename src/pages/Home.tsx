@@ -26,7 +26,6 @@ const Home: React.FC = () => {
        TERROSO
       </h1>
       <div className="flex justify-center mt-10 gap-10">
-        <Button onClick={handleStoriesClick} text="Stories" variant="primary" />
         <Button
           onClick={handleSimulatorClick}
           text="Simulator"
