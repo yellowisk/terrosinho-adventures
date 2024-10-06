@@ -16,14 +16,14 @@ export type StoryFrame = {
     title?: string,
     description?: string,
   },
-  pins: Pin[],
+  pins?: Pin[],
 };
 
 export type Story = {
   title: string,
   cover: string;
   backgroundImg?: string,
-  globeImg?: string,
+  globeImg: string,
   location?: {
     latitude: number,
     longitude: number,
