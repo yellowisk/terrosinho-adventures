@@ -133,10 +133,11 @@ const Introduction: React.FC = () => {
           <div className="absolute z-10 overflow-y-hidden">{renderStep()}</div>
           <EarthSimulation
             imageUrl={"./nowadays.png"}
-            globeRef={globeRef}
+            globeRef={undefined}
             backgroundUrl={backgroundUrl}
             setSelectedPin={() => {}}
             pins={[]}
+            connections={[]}
           />
         </div>
       )}
