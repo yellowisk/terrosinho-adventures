@@ -3,11 +3,12 @@ import { Pin } from './pins';
 import { Connection } from './connection';
 
 export type StoryFrame = {
-  terrosoImg: string,
+  terrosoImg?: string,
   frameLeft?:{
     image?: string,
     title?: string,
     description?: string,
+    imgs?: string[],
   },
   frameRight?:{
     image?: string,

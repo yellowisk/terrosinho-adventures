@@ -24,7 +24,7 @@ export const story1: Story = {
         description: "Trilobites were among the most diverse and abundant marine creatures during the Ordovician period.",
       },
       frameRight: {
-        image: "https://media.istockphoto.com/id/467325394/photo/chambered-nautilus-jetting.webp?a=1&b=1&s=612x612&w=0&k=20&c=zJ24-tSUTf_89SD6ISPJiRQoMbTHguIIt39b5hkEaIo=", // Image of cephalopods from Unsplash
+        image: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Orthoceras_BW.jpg", // Image of cephalopods from Unsplash
         title: "Cephalopods",
         description: "Early cephalopods like nautiloids dominated the seas with their spiral shells and predatory behavior.",
       }

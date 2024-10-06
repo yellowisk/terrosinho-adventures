@@ -1,7 +1,7 @@
 import { Story } from "../types/story";
 
 export const story3: Story = {
-  title: "Story 3",
+  title: "Permian ~250mya",
   globeImg: "./third_extinction.png",
   cover:
     "assets/stories_imgs/lycosuchus.png",
@@ -14,7 +14,7 @@ export const story3: Story = {
       },
       frameRight: {
         image: "https://images.ctfassets.net/cnu0m8re1exe/4LgP6Etb8PORM6SICuxcAy/25128a42c940fa82a74f61431ddc9fac/permain1.jpg?fm=jpg&fl=progressive&w=660&h=433&fit=fill",
-        title: "Pine Trees",
+        title: "Ancient Ferns",
       },
       frameCenter: {
         description: "Welcome to the end of the Permian period. Pangaea is finally formed, creating harsh and dry interior environments but also allowing for unique adaptations among plants and animals. On land, there were early reptiles and a variety of pine trees and ferns, while in the oceans, coral reefs and various marine species flourished.",
