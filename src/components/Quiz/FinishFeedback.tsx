@@ -1,5 +1,6 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
+import TerrosoComputer from "../../../public/assets/terroso_imgs/terroso_computer.png";
 
 const feedbacks: { [key: number]: { title: string; description: string } } = {
   [0]: {
@@ -54,28 +55,36 @@ const FinishFeedback: React.FC<{ score: number; total: number }> = ({
   total,
 }) => {
   return (
-    <div className="p-16 flex flex-row justify-between">
-      <div>
-        <h1 className="text-4xl font-bold mb-8">{feedbacks[score].title}</h1>
-        <span className="text-2xl">
-          <Typewriter
-            options={{
-              strings: [
-                `You got ${score} from ${total} questions right! ${feedbacks[score].description}`,
-              ],
-              autoStart: true,
-              loop: false,
-              delay: 60,
-              deleteSpeed: Infinity,
-            }}
-          />
-        </span>
+    <>
+      <div className="p-16 flex flex-row justify-between">
+        <div className="w-[75%]">
+          <h1 className="text-4xl font-bold mb-8">{feedbacks[score].title}</h1>
+          <span className="text-2xl">
+            <Typewriter
+              options={{
+                strings: [
+                  `You got ${score} from ${total} questions right! ${feedbacks[score].description}`,
+                ],
+                autoStart: true,
+                loop: false,
+                delay: 60,
+                deleteSpeed: Infinity,
+              }}
+            />
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center ">
+          {/* TODO - ADD CORRECT TERROSO */}
+          <img src={TerrosoComputer} alt="" />
+        </div>
       </div>
-      <div className="flex items-center justify-center ">
-        {/* TODO - ADD CORRECT TERROSO */}
-        <img src="../../assets/terroso_imgs/terroso_caveman.png" alt="" />
-      </div>
-    </div>
+      <button
+        className="ml-16 w-1/5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={() => window.location.reload()}
+      >
+        Try Again
+      </button>
+    </>
   );
 };
 
