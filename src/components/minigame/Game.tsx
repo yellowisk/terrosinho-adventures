@@ -95,8 +95,8 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, op
                 >
                     <img src={imageBefore} alt="Before" className="absolute top-0 left-0 w-full h-full object-cover" />
                     <div
-                        className="absolute top-0 left-0 h-full overflow-hidden"
-                        style={{ width: `${sliderValue}%` }}
+                        className="absolute top-0 left-0 h-full overflow-hidden w-full"
+                        style={{ clipPath: `rect(0 ${sliderValue}% 100% 0)` }}
                     >
                         <img src={imageAfter} alt="After" className="w-full h-full object-cover" />
                     </div>
