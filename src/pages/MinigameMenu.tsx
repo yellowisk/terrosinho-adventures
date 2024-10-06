@@ -37,7 +37,7 @@ const MinigameMenu: React.FC = () => {
         ) : (
             <div className="flex flex-col pt-16">
                 <BackButton />
-                <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 drop-shadow-lg mb-8">
+                <h1 className="text-5xl pb-2 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 drop-shadow-lg mb-8">
                     Minigames
                 </h1>
                 <div className="flex flex-row justify-center my-12">
