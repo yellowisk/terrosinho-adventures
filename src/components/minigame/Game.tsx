@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, LucideIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, LucideIcon } from "lucide-react";
 import ImageContent from "../image";
 import terroso from "../../assets/terroso_imgs/terroso_thinking.png";
 import Dialog from "../dialog";
@@ -7,6 +7,9 @@ import { Card } from "../minigame/Card";
 import { useEffect, useRef, useState } from "react";
 import Button from "../Button";
 import ExplanationPopUp from "./ExplanationPopUp";
+import { ChevronContainer } from "../Story/styles";
+import BackButton from "../BackButton";
+import { AlignJustify } from "lucide-react";
 
 
 interface GameProps extends MinigameInterface {
@@ -75,12 +78,12 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
 
     return (
         <div className="h-screen grid lg:grid-rows-[15%_60%_20%] grid-rows-[20%_55%_25%]">
-            <div className="flex flex-row w-full items-center">
-                <div className="flex flex-row justify-start">
-                    <ArrowLeft className="text-red-600 cursor-pointer" onClick={onBack} />
+            <div className="flex flex-row w-full items-center p-2">
+                <div className="mt-8">
+                    <BackButton onClick={onBack}/>
                 </div>
                 <div className="flex flex-row justify-center grow">
-                    <div className="sm:text-2xl sm:px-2  mx-3 sm:font-bold sm:rounded-3xl bg-gradient-to-tr from-fuchsia-500 to-fuchsia-800 text-white text-lg rounded-xl font-medium :">
+                    <div className="p-3 sm:text-2xl sm:px-2  mx-3 sm:font-bold sm:rounded-3xl text-white text-lg rounded-xl font-medium :">
                         {title}
                     </div>
                 </div>
@@ -88,7 +91,7 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
 
             <div className="flex flex-row">
                 <div
-                    className="relative w-full bg-red-500 overflow-hidden select-none"
+                    className="relative w-full overflow-hidden select-none"
                     onMouseMove={handleMouseMove}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={handleMouseUp}
@@ -101,11 +104,13 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
                         <img src={imageAfter} alt="After" className="w-full h-full object-cover" />
                     </div>
                     <div
-                        className="absolute top-0 right-20 h-full bg-fuchsia-500"
+                        className="absolute top-0 right-20 h-full bg-gray-400"
                         style={{ left: `${sliderValue}%`, width: "5px", cursor: "ew-resize" }}
                         onMouseDown={handleMouseDown}
-                    />
-                    <div className="absolute right-0 flex flex-col items-end h-full">
+                    > 
+                        <AlignJustify width='16px' className="mt-[28vh] transform -translate-x-1/3 text-center items-center mb-6 bg-gray-400 rounded-full"/>
+                    </div>
+                    <div className="absolute right-0 flex flex-col items-end h-full me-4 pb-6">
                         <div className="flex flex-col h-1/2 justify-end lg:-translate-y-0 -translate-y-3 py-5 items-center">
                             <Dialog text={question} />
                         </div>
@@ -113,7 +118,7 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
                             <ImageContent src={terroso} alt="terroso" />
                         </div>
                         <div className="flex flex-row w-full mb-1 justify-center">
-                          <Button text="Submit" onClick={openExplanationPopUp} variant='secondary'/>
+                          <Button text="Submit" onClick={openExplanationPopUp} variant='primary'/>
                         </div>
                     </div>
                 </div>
@@ -121,9 +126,11 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
 
             <div className="flex flex-col justify-center overflow-hidden">
                 <div className="flex items-center overflow-hidden">
-                    <button onClick={scrollLeft} className="text-red-600 p-2">
-                        <ArrowLeft className="h-6 w-6" />
-                    </button>
+                    <ChevronContainer disabled={false} className="ms-2">
+                        <button onClick={scrollLeft} className="text-white">
+                            <ChevronLeft className="h-6 w-6" />
+                        </button>
+                    </ChevronContainer>
                     <div className="overflow-hidden flex flex-row" ref={scrollRef}>
                         <div className="flex flex-row space-x-4 p-2">
                             {options.map((option, index) => (
@@ -138,9 +145,11 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
                             ))}
                         </div>
                     </div>
-                    <button onClick={scrollRight} className="text-red-600 p-2">
-                        <ArrowRight className="h-6 w-6" />
-                    </button>
+                    <ChevronContainer disabled={false} className="me-2">
+                        <button onClick={scrollRight} className="text-white">
+                            <ChevronRight className="h-6 w-6" />
+                        </button>
+                    </ChevronContainer>
                 </div>
             </div>
 

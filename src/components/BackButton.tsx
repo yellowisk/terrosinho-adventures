@@ -4,9 +4,10 @@ import styled from "styled-components";
 
 interface BackButtonProps {
   onClick?: () => void;
+  showText?: boolean;
 }
 
-const BackButton: React.FC<BackButtonProps> = ({ onClick }) => {
+const BackButton: React.FC<BackButtonProps> = ({ onClick, showText }) => {
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -31,7 +32,8 @@ const BackButton: React.FC<BackButtonProps> = ({ onClick }) => {
     //   <ChevronLeft /> <span>Go Back</span>
     // </StyledButton>
     <button onClick={() => goBack()} className="flex flex-row gap-4 items-center line-height-16px mb-8 cursor-pointer pointer-events-auto">
-      <ChevronLeft /> <span>Go Back</span>
+      <ChevronLeft /> 
+      { showText && <span>Go Back</span> }
     </button>
   );
 };

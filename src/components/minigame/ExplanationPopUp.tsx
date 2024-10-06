@@ -2,6 +2,8 @@ import { SolutionOption, SolutionType } from "../../types/minigame";
 import terrosoExplain from "../../assets/terroso_imgs/terroso_explain.png";
 import terrosoExplorer from "../../assets/terroso_imgs/terroso_explorer.png";
 
+import Button from "../Button";
+
 interface ExplanationProps {
     type: SolutionType;
     options: SolutionOption[];
@@ -35,8 +37,8 @@ const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, 
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-gradient-to-br from-teal-200 via-teal-300 to-teal-500 rounded-lg p-6 max-w-lg w-full">
-                <div className="text-2xl font-bold text-black text-center">
+            <div className="bg-gray-700/80 rounded-lg p-6 max-w-lg w-full">
+                <div className="text-2xl font-bold text-white text-center">
                     {incorrectOptions.length > 0 ? "Explanation" : "Congratulations!"}
                 </div>
 
@@ -46,8 +48,8 @@ const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, 
                             {incorrectOptions.map((option, index) => (
                                 <div key={index} className="flex flex-col items-center mb-4">
                                     <div className="flex flex-row justify-between gap-2">
-                                        <option.Icon className="w-8 h-8 text-black" />
-                                        <div className="text-xl text-black font-bold">
+                                        <option.Icon className="w-8 h-8 text-white" />
+                                        <div className="text-xl text-white font-bold">
                                             {option.text} would fit better in a {formatTypes(option.type)}.
                                         </div>
                                     </div>
@@ -55,7 +57,7 @@ const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, 
                             ))}
                         </div>
                         <div className="flex flex-col justify-center w-full">
-                            <img src={terrosoExplain} alt="terroso" className="w-48 h-48 scale-x-[-1]" />
+                            <img src={terrosoExplain} alt="terroso" className="w-auto h-48 scale-x-[-1]" />
                         </div>
                     </div>
                 ) : (
@@ -66,19 +68,10 @@ const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, 
 
                 <div className="flex flex-row justify-center">
                     {incorrectOptions.length > 0 ? (
-                        <button
-                            className="mt-6 px-4 py-2 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-800"
-                            onClick={onReset}  // Reset game if they play again
-                        >
-                            Play Again
-                        </button>
+                        <Button text="Play Again" onClick={onReset} variant='primary'/>
                     ) : (
-                        <button
-                            className="mt-6 px-4 py-2 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-800"
-                            onClick={onBack}  // Go back to the menu if they continue
-                        >
-                            Continue
-                        </button>
+                        <Button text="Continue" onClick={onBack} variant='primary'/>
+
                     )}
                 </div>
             </div>

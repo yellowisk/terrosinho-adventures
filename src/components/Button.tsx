@@ -9,9 +9,9 @@ type ButtonProps = {
 const Button: React.FC<ButtonProps> = ({ onClick, text, variant }) => {
   const variantStyle = {
     ["primary"]:
-      "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded",
+      "bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 mr-2 rounded",
     ["secondary"]:
-      "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mr-2 rounded",
+      "bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 mr-2 rounded",
     ["tertiary"]:
       "bg-yellow-500 hover:bg-yellow-700 texxt-white font-bold py-2 px-4 rounded",
     ["default"]: "",
