@@ -14,18 +14,47 @@ import { story4 } from "../stories/story-4";
 import { story5 } from "../stories/story-5";
 import { story6 } from "../stories/story-6";
 import StoryCarousel from "../components/Story/StoryCarroussel";
+import { Connection } from "../types/connection";
 
 
 interface EarthSimulationProps {
   imageUrl: string;
   globeRef: React.MutableRefObject<GlobeMethods | undefined>;
   backgroundUrl: string;
+  connections: Connection[];
   setSelectedPin: (pin: Pin) => void;
   pins: Pin[];
 }
 
-const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, backgroundUrl, globeRef, pins, setSelectedPin }) => {
+const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, backgroundUrl, globeRef, pins, setSelectedPin, connections }) => {
     
+    interface Arc {
+        startLat: number;
+        startLng: number;
+        endLat: number;
+        endLng: number;
+    }
+
+    const ARC_REL_LEN = 0.4; // relative to whole arc
+    const FLIGHT_TIME = 1000;
+
+    const [arcsData, setArcsData] = React.useState<Arc[]>([]);
+
+    React.useEffect(() => {
+        if (connections) {
+            connections.forEach((connection) => {
+                const startPin = pins.find((pin) => pin.label === connection.src);
+                const endPin = pins.find((pin) => pin.label === connection.dst);
+                if (startPin && endPin) {
+                    const arc = { startLat: startPin.lat, startLng: startPin.lng, endLat: endPin.lat, endLng: endPin.lng };
+                    setArcsData(curArcsData => [...curArcsData, arc]);
+                }
+            });
+        } else {
+            setArcsData([]);
+        }
+    }, [connections, pins])
+
     const formatPin = (pinObj: object) => {
         const pin = pinObj as Pin;
         const p = document.createElement('div');
@@ -64,6 +93,13 @@ const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, backgroundU
         globeImageUrl={imageUrl}
         backgroundImageUrl={backgroundUrl}
         animateIn={true}
+        arcsData={arcsData}
+        arcColor={() => 'white'}
+        arcDashLength={ARC_REL_LEN}
+        arcDashGap={2}
+        arcDashInitialGap={1}
+        arcDashAnimateTime={FLIGHT_TIME}
+        arcsTransitionDuration={0}
         htmlElementsData={pins}
         htmlElement={(p) => formatPin(p)}
         />
@@ -76,7 +112,6 @@ const Simulation: React.FC = () => {
     const [isStoryModalOpen, setIsStoryModalOpen] = React.useState<boolean>(false);
 
     const [selectedStory, setSelectedStory] = React.useState<Story>();
-    const [currentPinList, setCurrentPinList] = React.useState<Pin[]>([]);
     const [selectedPin, setSelectedPin] = React.useState<Pin | undefined>();
     const [selectedFrameIndex, setSelectedFrameIndex] = React.useState<number>(0);
 
@@ -110,13 +145,7 @@ const Simulation: React.FC = () => {
         setImageUrl(selectedStory?.globeImg)
         setIsStoryModalOpen(false);
         // rotate(globeRef);
-
-        if (selectedFrameIndex !== undefined) {
-            setCurrentPinList(selectedStory?.frames[selectedFrameIndex].pins || []);
-        } else {
-            setCurrentPinList([]);
-        }
-    }, [selectedFrameIndex, selectedStory]);
+    }, [selectedStory]);
 
     React.useEffect(() => {
         if (selectedPin) {
@@ -145,7 +174,14 @@ const Simulation: React.FC = () => {
                 <Stories isOpen={isStoryModalOpen} onClose={() => setIsStoryModalOpen(false)} stories={extinctionStories} onSelectStory={(story) => setSelectedStory(story)}/>
                 {(selectedStory || selectedPin?.frame) && <StoryCarousel storyFrames={selectedStory?.frames ?? [selectedPin!.frame!]} onSelectFrame={setSelectedFrameIndex} onClose={() => setSelectedStory(undefined)} />}
                 <Timeline />
-                <EarthSimulation imageUrl={imageUrl ? imageUrl:"./nowadays.png"} pins={currentPinList} globeRef={globeRef} backgroundUrl={backgroundUrl} setSelectedPin={setSelectedPin}/>
+                <EarthSimulation 
+                    imageUrl={imageUrl ? imageUrl:"./nowadays.png"}
+                    pins={selectedStory?.frames[selectedFrameIndex].pins || []}
+                    globeRef={globeRef}
+                    backgroundUrl={backgroundUrl}
+                    setSelectedPin={setSelectedPin}
+                    connections={selectedStory?.frames[selectedFrameIndex]?.connections || []}
+                />
             </div>
         </>
     );

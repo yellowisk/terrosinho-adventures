@@ -1,5 +1,7 @@
 import { Pin } from './pins';
 
+import { Connection } from './connection';
+
 export type StoryFrame = {
   terrosoImg: string,
   frameLeft?:{
@@ -17,6 +19,7 @@ export type StoryFrame = {
     description?: string,
   },
   pins?: Pin[],
+  connections?: Connection[],
 };
 
 export type Story = {
