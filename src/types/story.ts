@@ -19,8 +19,8 @@ export type StoryFrame = {
 export type Story = {
   title: string,
   cover: string;
-  backgroundImg: string,
-  globeImg: string,
+  backgroundImg?: string,
+  globeImg?: string,
   location?: {
     latitude: number,
     longitude: number,
