@@ -1,4 +1,4 @@
-import React, { useCallback, lazy } from "react";
+import React, { useCallback, lazy, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Button = lazy(() => import("../components/Button"));
 

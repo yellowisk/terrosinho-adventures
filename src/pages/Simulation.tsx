@@ -24,7 +24,7 @@ interface EarthSimulationProps {
   pins: Pin[];
 }
 
-const EarthSimulation: React.FC<EarthSimulationProps> = ({
+export const EarthSimulation: React.FC<EarthSimulationProps> = ({
   imageUrl,
   backgroundUrl,
   globeRef,
