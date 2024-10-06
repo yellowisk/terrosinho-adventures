@@ -1,5 +1,6 @@
 import React from "react";
 import Globe, { GlobeMethods } from "react-globe.gl";
+import { useNavigate } from "react-router-dom";
 
 import BackButton from "../components/BackButton";
 
@@ -43,7 +44,7 @@ const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, backgroundU
     const [arcsData, setArcsData] = React.useState<Arc[]>([]);
 
     React.useEffect(() => {
-        if (connections) {
+        if (connections.length > 0) {
             connections.forEach((connection) => {
                 const startPin = pins.find((pin) => pin.label === connection.src);
                 const endPin = pins.find((pin) => pin.label === connection.dst);
@@ -138,6 +139,8 @@ const Simulation: React.FC = () => {
         }, 300);
     }
 
+    const navigate = useNavigate();
+
     React.useEffect(() => {
         rotate(globeRef);
     }, []);
@@ -173,7 +176,7 @@ const Simulation: React.FC = () => {
             <div id="simulation">
                 {isStoryModalOpen == false && selectedStory == null && (
                     <div className="absolute top-0 left-0 z-10 m-16">
-                        <BackButton />
+                        <BackButton onClick={() => {navigate('/')}}/>
                     </div>
                 )}
                 <Stories isOpen={isStoryModalOpen} onClose={() => setIsStoryModalOpen(false)} stories={extinctionStories} onSelectStory={(story) => setSelectedStory(story)}/>

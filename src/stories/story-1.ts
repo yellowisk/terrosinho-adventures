@@ -19,7 +19,7 @@ export const story1: Story = {
     {
       terrosoImg: "assets/terroso_imgs/terroso_explorer.png",
       frameLeft: {
-        image: "https://media.istockphoto.com/id/478272718/photo/fossil-trilobite-imprinted-in-the-sediment.webp?a=1&b=1&s=612x612&w=0&k=20&c=zP5gXL2jZs6zyFP7X7PsDVNWdbjUfqBTQtwDopxK0nI=", // Image of trilobites from Unsplash
+        image: "https://formlabs-media.formlabs.com/filer_public_thumbnails/filer_public/d1/4d/d14d313d-b7b2-4a56-86f3-cf630c4433bf/trilobite1.png__1354x0_subsampling-2.png", // Image of trilobites from Unsplash
         title: "Trilobites",
         description: "Trilobites were among the most diverse and abundant marine creatures during the Ordovician period.",
       },
@@ -60,7 +60,7 @@ export const story1: Story = {
     {
       terrosoImg: "assets/terroso_imgs/terroso_caveman.png",
       frameLeft: {
-        image: "https://media.istockphoto.com/id/467325394/photo/chambered-nautilus-jetting.webp?a=1&b=1&s=612x612&w=0&k=20&c=zJ24-tSUTf_89SD6ISPJiRQoMbTHguIIt39b5hkEaIo=", // Image of extinct trilobites from Unsplash
+        image: "https://media.istockphoto.com/id/478272718/photo/fossil-trilobite-imprinted-in-the-sediment.webp?a=1&b=1&s=612x612&w=0&k=20&c=zP5gXL2jZs6zyFP7X7PsDVNWdbjUfqBTQtwDopxK0nI=", // Image of extinct trilobites from Unsplash
         title: "Extinct Trilobites",
         description: "Many trilobite species did not survive the Ordovician extinction.",
       },

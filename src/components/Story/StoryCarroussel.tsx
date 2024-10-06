@@ -41,34 +41,10 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
 
   return (
     <S.Container className="z-30 pointer-events-none">
-      <S.BackIcon onClick={handleExit} className="pointer-events-auto z-40">
+      <S.BackIcon onClick={handleExit} className="pointer-events-auto z-40 ">
         <X />
       </S.BackIcon>
-      <S.FramesContainer>
-        {currentFrame?.frameLeft && (
-          <S.Frame>
-            <S.FrameTitle>{currentFrame.frameLeft.title}</S.FrameTitle>
-            {currentFrame.frameLeft.image && (
-              <S.FrameImage src={currentFrame.frameLeft.image} />
-            )}
-            <S.FrameDescription>
-              {currentFrame.frameLeft.description}
-            </S.FrameDescription>
-          </S.Frame>
-        )}
-        {currentFrame.frameRight && (
-          <S.Frame>
-            <S.FrameTitle>{currentFrame.frameRight.title}</S.FrameTitle>
-            {currentFrame.frameRight.image && (
-              <S.FrameImage src={currentFrame.frameRight.image} />
-            )}
-            <S.FrameDescription>
-              {currentFrame.frameRight.description}
-            </S.FrameDescription>
-          </S.Frame>
-        )}
-      </S.FramesContainer>
-      <S.Footer>
+      <S.Footer className="mt-3">
         <S.ChevronContainer
           disabled={currentFrameIndex == 0}
           onClick={() => handlePrev(currentFrameIndex)}
@@ -93,6 +69,30 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
         </S.ChevronContainer>
         <S.Terroso src={currentFrame.terrosoImg} />
       </S.Footer>
+      <S.FramesContainer>
+        {currentFrame?.frameLeft && (
+          <S.Frame>
+            <S.FrameTitle>{currentFrame.frameLeft.title}</S.FrameTitle>
+            {currentFrame.frameLeft.image && (
+              <S.FrameImage src={currentFrame.frameLeft.image} />
+            )}
+            <S.FrameDescription>
+              {currentFrame.frameLeft.description}
+            </S.FrameDescription>
+          </S.Frame>
+        )}
+        {currentFrame.frameRight && (
+          <S.Frame>
+            <S.FrameTitle>{currentFrame.frameRight.title}</S.FrameTitle>
+            {currentFrame.frameRight.image && (
+              <S.FrameImage src={currentFrame.frameRight.image} />
+            )}
+            <S.FrameDescription>
+              {currentFrame.frameRight.description}
+            </S.FrameDescription>
+          </S.Frame>
+        )}
+      </S.FramesContainer>
     </S.Container>
   );
 };

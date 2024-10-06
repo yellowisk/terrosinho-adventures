@@ -40,7 +40,7 @@ export const story5: Story = {
         title: "Meteor",
       },
       frameCenter: {
-        description: "After this extinction, only a fraction of life remained, but it set the stage for fruit-bearing plants, mammals, and eventually humans, to diversify and eventually dominate the planet in the following eras.”",
+        description: "After this extinction, only a fraction of life remained, but it set the stage for fruit-bearing plants, mammals, and eventually humans, to diversify and eventually dominate the planet in the following eras.",
       },
     }
   ],
