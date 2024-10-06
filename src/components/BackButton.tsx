@@ -2,26 +2,37 @@ import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const BackButton = () => {
+interface BackButtonProps {
+  onClick?: () => void;
+}
+
+const BackButton: React.FC<BackButtonProps> = ({ onClick }) => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate(-1);
+    if (onClick) {
+      onClick();
+    } else {
+      navigate(-1);
+    }
   };
 
-  const StyledButton = styled.button`
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    align-items: center;
-    line-height: 16px;
-    margin-bottom: 8px;
-  `;
+  // const StyledButton = styled.button`
+  //   display: flex;
+  //   flex-direction: row;
+  //   gap: 4px;
+  //   align-items: center;
+  //   line-height: 16px;
+  //   margin-bottom: 8px;
+  // `;
 
   return (
-    <StyledButton onClick={goBack}>
+    // <StyledButton onClick={goBack}>
+    //   <ChevronLeft /> <span>Go Back</span>
+    // </StyledButton>
+    <button onClick={() => goBack()} className="flex flex-row gap-4 items-center line-height-16px mb-8 cursor-pointer pointer-events-auto">
       <ChevronLeft /> <span>Go Back</span>
-    </StyledButton>
+    </button>
   );
 };
 

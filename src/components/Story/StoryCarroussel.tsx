@@ -32,8 +32,8 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
   };
 
   return (
-    <S.Container>
-      <S.BackIcon onClick={handleExit}>
+    <S.Container className="z-30 pointer-events-none">
+      <S.BackIcon onClick={handleExit} className="pointer-events-auto z-40">
         <X />
       </S.BackIcon>
       <S.FramesContainer>
@@ -64,6 +64,7 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
         <S.ChevronContainer
           disabled={currentFrameIndex == 0}
           onClick={() => handlePrev(currentFrameIndex)}
+          className="pointer-events-auto"
         >
           <ChevronLeft />
         </S.ChevronContainer>
@@ -78,6 +79,7 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
         <S.ChevronContainer
           disabled={currentFrameIndex == storyFrames.length - 1}
           onClick={() => handleNext(currentFrameIndex)}
+          className="pointer-events-auto"
         >
           <ChevronRight />
         </S.ChevronContainer>

@@ -4,6 +4,7 @@ export const story1: Story = {
   title: "Ordovician ~440mya",
   cover: "https://3.bp.blogspot.com/-veQqPsOyOqU/U-e0BjCtY7I/AAAAAAAACW8/QSS0ASlalCU/s1600/Cincinnatian%2BSeas.jpg", // replace with an actual cover image URL from Unsplash
   backgroundImg: "", // replace with an actual background image URL from Unsplash
+  globeImg: "./first_extinction.png",
   location: {
     latitude: 0,  // Replace with accurate latitude
     longitude: 0, // Replace with accurate longitude

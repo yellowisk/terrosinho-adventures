@@ -5,12 +5,15 @@ import * as S from "./styles";
 import StoryCarousel from "./StoryCarroussel";
 type StoryCoverProps = {
   story: Story;
+  className?: string;
+  onSelected: (story: Story) => void;
 };
 
-const StoryCover: React.FC<StoryCoverProps> = ({ story }) => {
+const StoryCover: React.FC<StoryCoverProps> = ({ story, className, onSelected }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
+    onSelected(story);
     setIsOpen(true);
   };
 
@@ -20,7 +23,7 @@ const StoryCover: React.FC<StoryCoverProps> = ({ story }) => {
 
   return (
     <>
-      <S.StoryCard onClick={handleClick}>
+      <S.StoryCard onClick={handleClick} className={className}>
         <S.ImageCover alt={story.title} src={story.cover} />
         <span>{story.title}</span>
       </S.StoryCard>
