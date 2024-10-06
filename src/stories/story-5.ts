@@ -11,7 +11,6 @@ export const story5: Story = {
       frameRight: {
         image: "https://images.ctfassets.net/cnu0m8re1exe/59qssnh6iHfxY2r3FrctNZ/195cca2a860caed3b434a2d3de1ea555/trex.jpg?fm=jpg&fl=progressive&w=660&h=433&fit=fill",
         title: "T-Rex",
-        description: "asdasdasdasdasdas",
       },
       frameLeft: {
         image: "https://today.cofc.edu/wp-content/uploads/sites/3/2022/09/Sea-Monster-800x533.jpg",
