@@ -39,11 +39,11 @@ const solutionsData = [
 ];
 
 const minigameExample: MinigameInterface = {
-  title: 'Wildfire',
+  title: 'Hurricanes have a profound impact on our planet, affecting countless people each time they occur. While their effects can be mitigated, they often are not.',
   type: SolutionType.wildfire,
   imageBefore: lasVegasBefore,
   imageAfter: lasVegasAfter,
-  question: 'What is the best response to a wildfire?',
+  question: 'What could we have done differently?',
   options: [
       { SolutionOptions: solutionsData[0] },
       { SolutionOptions: solutionsData[1] },
@@ -54,11 +54,11 @@ const minigameExample: MinigameInterface = {
 };
 
 const minigameExample2: MinigameInterface = {
-  title: 'Flood',
+  title: 'In densely populated cities, individuals often build homes in high-risk areas, such as hills and slopes, which can unfortunately lead to landslides.',
   type: SolutionType.flood,
   imageBefore: lasVegasBefore,
   imageAfter: lasVegasAfter,
-  question: 'What is the best response to a flood?',
+  question: 'What could we have done differently?',
   options: [
       { SolutionOptions: solutionsData[0] },
       { SolutionOptions: solutionsData[1] },
@@ -69,11 +69,11 @@ const minigameExample2: MinigameInterface = {
 };
 
 const minigameExample3: MinigameInterface = {
-  title: 'Earthquake',
+  title: 'However, even with measures in place to mitigate their effects, hurricanes can still cause significant harm.',
   type: SolutionType.earthquake,
   imageBefore: lasVegasBefore,
   imageAfter: lasVegasAfter,
-  question: 'What is the best response to an earthquake?',
+  question: 'What actions can we take now?',
   options: [
       { SolutionOptions: solutionsData[0] },
       { SolutionOptions: solutionsData[1] },
