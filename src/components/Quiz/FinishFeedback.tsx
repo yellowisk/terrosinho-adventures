@@ -1,6 +1,6 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
-import TerrosoComputer from "../../../public/assets/terroso_imgs/terroso_computer.png";
+import TerrosoComputer from "../../../src/assets/terroso_imgs/terroso_computer.png";
 
 const feedbacks: { [key: number]: { title: string; description: string } } = {
   [0]: {

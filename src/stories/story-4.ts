@@ -2,13 +2,14 @@ import { Story } from "../types/story";
 
 export const story4: Story = {
   title: "Story 4",
+  globeImg: "./fourth_extinction.png",
   cover:
     "https://th.bing.com/th/id/R.48723269838305f04a7adfdb12359bfe?rik=lOzESyn2ARD%2bcg&pid=ImgRaw&r=0",
   frames: [
     {
       terrosoImg: "assets/terroso_imgs/terroso_caveman.png",
       frameLeft: {
-        image: "https://assets.newatlas.com/dims4/default/7627dc3/2147483647/strip/true/crop/2134x1423+0+40/resize/840x560!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2F7c%2F9e%2F592cd1924a9387aa07a725f3192e%2Fbrasilodon.png",
+        image: "assets/stories_imgs/shrew.avif",
         title: "Shrew",
       },
       frameRight: {
@@ -26,7 +27,7 @@ export const story4: Story = {
       },
     },
     {
-      terrosoImg: "src/assets/terroso_imgs/terroso_flabbergasted.png",
+      terrosoImg: "assets/terroso_imgs/terroso_flabbergasted.png",
       frameCenter: {
         description: "Another possibility is meteor or meteorite impacts. Evidence supporting this theory includes the presence of craters that may have been formed by such impacts. Another possible factor is the release of large quantities of CO2 into the atmosphere caused by the fragmentation of Pangaea, resulting in a high greenhouse effect, which led to a rise in global temperatures. Does this sound familiar to you?",
       },

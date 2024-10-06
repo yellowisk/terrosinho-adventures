@@ -17,7 +17,7 @@ export const Container = styled.div`
   left: 0;
   top: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   padding: 16px;
   height: -webkit-fill-available;
   width: 100vw;
@@ -194,7 +194,7 @@ export const Terroso = styled.img`
   right: 0;
   height: 30vh;
   margin: 60px;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
   user-select: none;
 `;

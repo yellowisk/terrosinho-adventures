@@ -10,7 +10,28 @@ interface ExplanationProps {
 }
 
 const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, onBack }) => {
-    const incorrectOptions = options.filter(option => option.type !== type);
+    const incorrectOptions: SolutionOption[] = [];
+    console.log(options);
+
+    options.forEach((option) => {
+        const isCorrectOption = option.type.includes(type);
+        if (!isCorrectOption) {
+            console.log("Incorrect option: ", option);
+            incorrectOptions.push(option);
+        }
+    });
+
+    const formatTypes = (types: SolutionType[]) => {
+        if (types.length === 1) {
+            return types[0]; // Single type, no need for "and"
+        } else if (types.length === 2) {
+            return `${types[0]} and ${types[1]}`; // Two types, use "and" without commas
+        } else {
+            const allButLast = types.slice(0, -1).join(", "); // Join all but last with commas
+            const last = types[types.length - 1]; // Last type
+            return `${allButLast}, and ${last}`; // Use Oxford comma and "and"
+        }
+    };
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -21,14 +42,13 @@ const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, 
 
                 {incorrectOptions.length > 0 ? (
                     <div className="flex flex-row justify-center gap-2 mt-4">
-                        <div className="flex flex-col justify-center">
+                        <div className="flex flex-col justify-center max-h-60 overflow-y-auto">  {/* Scrollable Container */}
                             {incorrectOptions.map((option, index) => (
                                 <div key={index} className="flex flex-col items-center mb-4">
                                     <div className="flex flex-row justify-between gap-2">
-                                        {/* Display the icon of the incorrect option */}
                                         <option.Icon className="w-8 h-8 text-black" />
                                         <div className="text-xl text-black font-bold">
-                                            {option.text} would fit better in a {option.type} situation
+                                            {option.text} would fit better in a {formatTypes(option.type)}.
                                         </div>
                                     </div>
                                 </div>

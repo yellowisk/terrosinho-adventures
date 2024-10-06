@@ -17,6 +17,52 @@ export const story6: Story = {
       frameCenter: {
         description: "asdasdasdasdasdas",
       },
+      pins: [
+        {
+          label: "Paris",
+          lat: 48.923328440672506, 
+          lng: 2.151983740844543,
+        },
+        {
+          label: "London",
+          lat: 51.50339650934399, 
+          lng: -0.11126382669849086,
+        },
+        {
+          label: "New York",
+          lat: 40.712776,
+          lng: -73.99925429056148
+        },
+        {
+          label: "Tokyo",
+          lat: 35.682839,
+          lng: 139.759455,
+        },
+        {
+          label: "Sydney",
+          lat: -33.865143,
+          lng: 151.209900,
+        },
+        {
+          label: "Rio de Janeiro",
+          lat: -22.913395,
+          lng: -43.200710,
+        }
+      ],
+      connections: [
+        {
+          src: "Paris",
+          dst: "London",
+        },
+        {
+          src: "New York",
+          dst: "Paris",
+        },
+        {
+          src: "London",
+          dst: "Sydney",
+        },
+      ],
     },
     {
       terrosoImg: "src/assets/terroso_imgs/terroso_caveman.png",
@@ -27,9 +73,61 @@ export const story6: Story = {
         image: "src/assets/terroso_imgs/terroso_caveman.png",
         title: "asdasdasdasdasdas",
       },
+      pins: [
+        {
+          label: "Paris",
+          lat: 48.923328440672506, 
+          lng: 2.151983740844543,
+        },
+        {
+          label: "London",
+          lat: 51.50339650934399, 
+          lng: -0.11126382669849086,
+        },
+        {
+          label: "New York",
+          lat: 40.712776,
+          lng: -73.99925429056148
+        },
+        {
+          label: "Tokyo",
+          lat: 35.682839,
+          lng: 139.759455,
+        },
+        {
+          label: "Sydney",
+          lat: -33.865143,
+          lng: 151.209900,
+        },
+        {
+          label: "Rio de Janeiro",
+          lat: -22.913395,
+          lng: -43.200710,
+        }
+      ],
+      permanentConnections: [
+        {
+          src: "Paris",
+          dst: "London",
+        },
+        {
+          src: "New York",
+          dst: "Paris",
+        },
+        {
+          src: "London",
+          dst: "Sydney",
+        },
+      ],
+      newConnections: [
+        {
+          src: "Sydney",
+          dst: "Rio de Janeiro",
+        },
+      ]
     },
     {
-      terrosoImg: "src/assets/terroso_imgs/terroso_caveman.png",
+      terrosoImg: "./assets/terroso_imgs/terroso_caveman.png",
       frameCenter: {
         description: "siudhsihfiuhfs",
       },

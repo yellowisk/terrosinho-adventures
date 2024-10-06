@@ -20,7 +20,7 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
     const [isDragging, setIsDragging] = useState(false);
     const [optionsSelected, setOptionsSelected] = useState<SolutionOption[]>([]);
     const [showExplanation, setShowExplanation] = useState(false);
-    
+
     useEffect(() => {
         setSliderValue(50);
     }, []);
@@ -39,11 +39,11 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
 
     const computePoints = (sol: SolutionOption) => {
         if (optionsSelected.includes(sol)) {
-          setOptionsSelected(prevSelected => prevSelected.filter(option => option !== sol));
-      } else {
-          setOptionsSelected(prevSelected => [...prevSelected, sol]);
-      }
-    };
+            setOptionsSelected(optionsSelected.filter((option) => option !== sol)); // Remove option if it is already selected
+        } else {
+            setOptionsSelected([...optionsSelected, sol]); // Add option if it is not selected
+        }
+    }
 
     const isOptionSelected = (sol: SolutionOption) => {
       return optionsSelected.includes(sol);
