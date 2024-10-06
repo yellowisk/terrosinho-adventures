@@ -11,7 +11,10 @@ const CardGame: React.FC<CardProps> = ({ text, onClick, image }) => {
         onClick={onClick}
       >
         <img src={image} className="w-full h-24 rounded-2xl" />
-        <div className="text-center text-black text-2xl">{text}</div>
+        <div className="flex flex-col h-full justify-center">
+          <div className="text-center text-white text-2xl font-extrabold">Minigame</div>
+          <div className="text-center text-white text-6xl font-extrabold">{text}</div>
+        </div>
       </div>
     );
   }
