@@ -1,5 +1,4 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import BackButton from "../components/BackButton";
 import { questions } from "../types/quiz";
 import Question from "../components/Quiz/Question";
