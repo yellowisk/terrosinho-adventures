@@ -1,3 +1,5 @@
+import { Pin } from './pins';
+
 export type StoryFrame = {
   terrosoImg: string,
   frameLeft?:{
@@ -13,7 +15,8 @@ export type StoryFrame = {
   frameCenter?:{
     title?: string,
     description?: string,
-  }
+  },
+  pins: Pin[],
 };
 
 export type Story = {

@@ -3,9 +3,10 @@ import Globe, { GlobeMethods } from "react-globe.gl";
 
 import TimePoint from "../components/TimePoint";
 
-import Stories from "./Stories";
+import { Pin } from "../types/pins";
 import { Story } from "../types/story";
 
+import Stories from "./Stories";
 import { story1 } from "../stories/story-1";
 import { story2 } from "../stories/story-2";
 import { story3 } from "../stories/story-3";
@@ -19,15 +20,52 @@ interface EarthSimulationProps {
   imageUrl: string;
   globeRef: React.MutableRefObject<GlobeMethods | undefined>;
   backgroundUrl: string;
+  setSelectedPin: (pin: Pin) => void;
+  pins: Pin[];
 }
 
-const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, backgroundUrl, globeRef }) => {
+const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, backgroundUrl, globeRef, pins, setSelectedPin }) => {
+    
+    const formatPin = (pinObj: object) => {
+        const pin = pinObj as Pin;
+        const p = document.createElement('div');
+        const svg = document.createElement('svg');
+        p.className = 'flex flex-col flex-wrap items-center justify-center';
+
+        const toolTip = document.createElement('div');
+        toolTip.innerHTML = pin.label || "";
+        toolTip.style.visibility = 'hidden';
+        toolTip.style.backgroundColor = 'rgba(30, 41, 59, 0.6)';
+        toolTip.style.padding = '.2rem';
+        toolTip.style.color = 'white';
+        toolTip.style.borderRadius = '5px';
+        toolTip.style.transform = 'translate(0, -100%)';
+
+        svg.setHTMLUnsafe('<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="red" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>')
+
+        // Lucide map-pin icon
+        p.style.color = 'red';
+
+        svg.style.transform = 'translate(0, -100%)';
+
+        p.appendChild(toolTip);
+        p.appendChild(svg);
+        p.style.pointerEvents = 'auto';
+        p.style.cursor = 'pointer';
+        p.onmouseenter = () => toolTip.style.visibility = 'visible';
+        p.onmouseleave = () => toolTip.style.visibility = 'hidden';
+        p.onclick = () => setSelectedPin(pin);
+        return p;
+    }
+
     return (
         <Globe 
         ref={globeRef}
         globeImageUrl={imageUrl}
         backgroundImageUrl={backgroundUrl}
         animateIn={true}
+        htmlElementsData={pins}
+        htmlElement={(p) => formatPin(p)}
         />
     );
 }
@@ -38,13 +76,15 @@ const Simulation: React.FC = () => {
     const [isStoryModalOpen, setIsStoryModalOpen] = React.useState<boolean>(false);
 
     const [selectedStory, setSelectedStory] = React.useState<Story>();
+    const [currentPinList, setCurrentPinList] = React.useState<Pin[]>([]);
+    const [selectedPin, setSelectedPin] = React.useState<Pin | undefined>();
+    const [selectedFrameIndex, setSelectedFrameIndex] = React.useState<number>(0);
 
     const [backgroundUrl, setBackgroundUrl] = React.useState<string>("");
     const [imageUrl, setImageUrl] = React.useState<string | undefined>("");
 
     const globeRef = React.useRef<GlobeMethods | undefined>();
     const rotate = async (globeRef: React.MutableRefObject<GlobeMethods | undefined>) => {
-        // setBackgroundUrl("");
         if (globeRef.current) {
             const controls = globeRef.current.controls();
             controls.enableRotate = false;
@@ -63,14 +103,26 @@ const Simulation: React.FC = () => {
     }
 
     React.useEffect(() => {
-        rotate(globeRef);
+        // rotate(globeRef);
     }, []);
 
     React.useEffect(() => {
         setImageUrl(selectedStory?.globeImg)
         setIsStoryModalOpen(false);
-        rotate(globeRef);
-    }, [selectedStory]);
+        // rotate(globeRef);
+
+        if (selectedFrameIndex !== undefined) {
+            setCurrentPinList(selectedStory?.frames[selectedFrameIndex].pins || []);
+        } else {
+            setCurrentPinList([]);
+        }
+    }, [selectedFrameIndex, selectedStory]);
+
+    React.useEffect(() => {
+        if (selectedPin) {
+            console.log("aaaa");
+        }
+    }, [selectedPin]);
 
     const Timeline: React.FC = () => {
         return (
@@ -91,9 +143,9 @@ const Simulation: React.FC = () => {
         <>
             <div id="simulation">
                 <Stories isOpen={isStoryModalOpen} onClose={() => setIsStoryModalOpen(false)} stories={extinctionStories} onSelectStory={(story) => setSelectedStory(story)}/>
-                {selectedStory && <StoryCarousel storyFrames={selectedStory.frames} onClose={() => setSelectedStory(undefined)} />}
+                {(selectedStory || selectedPin?.frame) && <StoryCarousel storyFrames={selectedStory?.frames ?? [selectedPin!.frame!]} onSelectFrame={setSelectedFrameIndex} onClose={() => setSelectedStory(undefined)} />}
                 <Timeline />
-                <EarthSimulation imageUrl={imageUrl ? imageUrl:"./nowadays.png"} globeRef={globeRef} backgroundUrl={backgroundUrl}/>
+                <EarthSimulation imageUrl={imageUrl ? imageUrl:"./nowadays.png"} pins={currentPinList} globeRef={globeRef} backgroundUrl={backgroundUrl} setSelectedPin={setSelectedPin}/>
             </div>
         </>
     );
