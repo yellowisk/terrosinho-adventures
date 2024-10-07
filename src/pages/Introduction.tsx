@@ -10,6 +10,7 @@ const Introduction: React.FC = () => {
   const { play } = useAudioContext();
   const [step, setStep] = useState<number>(-1);
   const navigate = useNavigate();
+
   const backgroundUrl = "";
 
   const renderStep = () => {
