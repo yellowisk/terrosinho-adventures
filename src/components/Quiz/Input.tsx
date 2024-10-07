@@ -1,4 +1,4 @@
-import { FieldValues, useForm, UseFormRegister } from "react-hook-form";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
 const StyledOption = styled.div<{ selected: boolean }>`
   display: flex;

@@ -1,6 +1,6 @@
 import terrosoExplorer from "../../assets/terroso_imgs/terroso_explorer.png";
 import terrosoSad from "../../assets/terroso_imgs/terroso_sad.png";
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Confetti from "react-confetti";
 

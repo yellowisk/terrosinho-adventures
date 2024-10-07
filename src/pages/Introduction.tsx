@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { EarthSimulation } from "./Simulation";
-import Globe, { GlobeMethods } from "react-globe.gl";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./Introduction.styles";
@@ -11,8 +10,6 @@ const Introduction: React.FC = () => {
   const { play } = useAudioContext();
   const [step, setStep] = useState<number>(-1);
   const navigate = useNavigate();
-
-  const globeRef = React.useRef<GlobeMethods | undefined>();
   const backgroundUrl = "";
 
   const renderStep = () => {
