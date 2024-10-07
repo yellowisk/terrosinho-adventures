@@ -482,7 +482,7 @@ export const story6: Story = {
     {
       frameLeft: {
         title: "Awareness sparks change",
-        description: "Being informed and staying engaged helps us understand what’s at stake and pushes us to hold those in power accountable. But we must also see ourselves as global citizens, connected to a larger community that shares this planet. It’s not just about doing our part, it’s about standing together, across borders and cultures, to demand action that protects not just our future, but the future of all life on Earth. Everything is connected, which includes humans, so we need to be good citizens of the world systems."
+        description: "Being informed and staying engaged helps us understand what’s at stake and pushes us to hold those in power accountable. But we must also see ourselves as global citizens, connected to a larger community that shares this planet. \n\nIt’s not just about doing our part, it’s about standing together, across borders and cultures, to demand action that protects not just our future, but the future of all life on Earth. \n\nEverything is connected, which includes humans, so we need to be good citizens of the world systems."
       }
     },
     {

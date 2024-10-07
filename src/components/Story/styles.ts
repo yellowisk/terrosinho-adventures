@@ -94,6 +94,7 @@ export const Frame = styled.div`
   overflow: hidden;
   text-align: justify;
   background-color: #4a556887;
+  white-space: pre-wrap;
   ${animationFadeIn}
 `;
 
