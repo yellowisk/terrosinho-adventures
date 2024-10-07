@@ -56,7 +56,7 @@ const Introduction: React.FC = () => {
     return (
       <S.Container className="bg-black">
         <h1 className="text-6xl font-bold mb-16 text-white animate-pulse">
-          ✨💻 CODE IN LUA 🌙✨
+          ✨💻 CODING IN LUA 🌙✨
         </h1>
         <div className="border border-gray-500 rounded-lg p-8 mb-8">
           <div className="text-white text-center text-2xl">
