@@ -10,6 +10,7 @@ import ExplanationPopUp from "./ExplanationPopUp";
 import { ChevronContainer } from "../Story/styles";
 import BackButton from "../BackButton";
 import { AlignJustify } from "lucide-react";
+import { set } from "react-hook-form";
 
 
 interface GameProps extends MinigameInterface {
@@ -23,10 +24,19 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
     const [isDragging, setIsDragging] = useState(false);
     const [optionsSelected, setOptionsSelected] = useState<SolutionOption[]>([]);
     const [showExplanation, setShowExplanation] = useState(false);
+    const [maxScorePossible, setMaxScorePossible] = useState(0);
 
     useEffect(() => {
+        let scoreCount = 0;
+        options.forEach((option) => {
+            const isCorrectOption = option.type.includes(type);
+            if (isCorrectOption) {
+                scoreCount += 1;
+            }
+        });
+        setMaxScorePossible(scoreCount);
         setSliderValue(50);
-    }, []);
+    }, [options, type]);
 
     const scrollLeft = () => {
         if (scrollRef.current) {
@@ -42,9 +52,9 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
 
     const computePoints = (sol: SolutionOption) => {
         if (optionsSelected.includes(sol)) {
-            setOptionsSelected(optionsSelected.filter((option) => option !== sol)); // Remove option if it is already selected
+            setOptionsSelected(optionsSelected.filter((option) => option !== sol));
         } else {
-            setOptionsSelected([...optionsSelected, sol]); // Add option if it is not selected
+            setOptionsSelected([...optionsSelected, sol]);
         }
     }
 
@@ -76,6 +86,7 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
         setShowExplanation(false);
     }
 
+
     return (
         <div className="h-screen grid lg:grid-rows-[15%_60%_20%] grid-rows-[20%_55%_25%]">
             <div className="flex flex-row w-full items-center p-2">
@@ -89,7 +100,7 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
                 </div>
             </div>
 
-            <div className="flex flex-row">
+                        <div className="flex flex-row">
                 <div
                     className="relative w-full overflow-hidden select-none"
                     onMouseMove={handleMouseMove}
@@ -155,7 +166,7 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
 
             <div className="flex flex-row justify-center mx-20">
               {showExplanation && <ExplanationPopUp type={type} options={optionsSelected} 
-              onReset={closeExplanationPopUp} onBack={onBack} />}
+              onReset={closeExplanationPopUp} onBack={onBack} maxScorePossible={maxScorePossible} />}
             </div>
         </div>
     );

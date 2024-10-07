@@ -21,43 +21,51 @@ import { Connection } from "../types/connection";
 import { createRoot } from "react-dom/client";
 import { flushSync } from "react-dom";
 
+import { StyledContainer, StyledLine } from "../components/TimeLIne.styles";
 
 interface EarthSimulationProps {
   imageUrl: string;
   globeRef: React.MutableRefObject<GlobeMethods | undefined>;
   backgroundUrl: string;
   connections: Connection[];
-  setSelectedPin: (pin: Pin) => void;
   pins: Pin[];
 }
 
-export const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, backgroundUrl, globeRef, pins, setSelectedPin, connections }) => {
-    interface Arc {
-        startLat: number;
-        startLng: number;
-        endLat: number;
-        endLng: number;
-    }
+export const EarthSimulation: React.FC<EarthSimulationProps> = ({
+  imageUrl,
+  backgroundUrl,
+  globeRef,
+  pins,
+  connections,
+}) => {
+  interface Arc {
+    startLat: number;
+    startLng: number;
+    endLat: number;
+    endLng: number;
+  }
 
-    const ARC_REL_LEN = 0.4; // relative to whole arc
-    const FLIGHT_TIME = 1000;
+  const ARC_REL_LEN = 0.4; // relative to whole arc
+  const FLIGHT_TIME = 1000;
 
-    const [arcsData, setArcsData] = React.useState<Arc[]>([]);
+  const [arcsData, setArcsData] = React.useState<Arc[]>([]);
 
     React.useEffect(() => {
         if (connections.length > 0) {
-            connections.forEach((connection) => {
-                const startPin = pins.find((pin) => pin.label === connection.src);
-                const endPin = pins.find((pin) => pin.label === connection.dst);
-                if (startPin && endPin) {
-                    const arc = { startLat: startPin.lat, startLng: startPin.lng, endLat: endPin.lat, endLng: endPin.lng };
-                    setArcsData(curArcsData => [...curArcsData, arc]);
-                }
-            });
-        } else {
-            setArcsData([]);
-        }
-    }, [connections, pins])
+        connections.forEach((connection) => {
+            const startPin = pins.find((pin) => pin.label === connection.src);
+            const endPin = pins.find((pin) => pin.label === connection.dst);
+            if (startPin && endPin) {
+            const arc = {
+                startLat: startPin.lat,
+                startLng: startPin.lng,
+                endLat: endPin.lat,
+                endLng: endPin.lng,
+            };
+            setArcsData((curArcsData) => [...curArcsData, arc]);
+            }
+        }, [connections, pins])}
+    });
 
     const formatPin = (pinObj: object) => {
         let pinOpen = false;
@@ -116,7 +124,7 @@ export const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, back
         p.onclick = () => {
             pinOpen = !pinOpen;
             if (pinOpen) {
-                fDiv.className = 'pointer-events-none visible absolute w-80 transform -translate-x-44';
+                fDiv.className = 'pointer-events-none visible absolute w-[65rem] transform translate-x-[10rem]';
                 svg.style.color = 'blue';
             } else {
                 fDiv.className = 'pointer-events-none invisible absolute';
@@ -124,16 +132,16 @@ export const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, back
             }
         };
         return p;
-    }
+    };
 
     return (
-        <Globe 
+        <Globe
         ref={globeRef}
         globeImageUrl={imageUrl}
         backgroundImageUrl={backgroundUrl}
         animateIn={true}
         arcsData={arcsData}
-        arcColor={() => 'white'}
+        arcColor={() => "white"}
         arcDashLength={ARC_REL_LEN}
         arcDashGap={2}
         arcDashInitialGap={1}
@@ -143,92 +151,102 @@ export const EarthSimulation: React.FC<EarthSimulationProps> = ({ imageUrl, back
         htmlElement={(p) => formatPin(p)}
         />
     );
-}
+};
 
 const Simulation: React.FC = () => {
-    const extinctionStories = [story1, story2, story3, story4, story5, story6];
+  const extinctionStories = [story1, story2, story3, story4, story5, story6];
 
-    const [isStoryModalOpen, setIsStoryModalOpen] = React.useState<boolean>(false);
+  const [isStoryModalOpen, setIsStoryModalOpen] =
+    React.useState<boolean>(false);
 
-    const [selectedStory, setSelectedStory] = React.useState<Story>();
-    const [selectedPin, setSelectedPin] = React.useState<Pin | undefined>();
-    const [selectedFrameIndex, setSelectedFrameIndex] = React.useState<number>(0);
+  const [selectedStory, setSelectedStory] = React.useState<Story>();
+  const [selectedFrameIndex, setSelectedFrameIndex] = React.useState<number>(0);
 
-    const [backgroundUrl, setBackgroundUrl] = React.useState<string>("");
+  const [backgroundUrl, setBackgroundUrl] = React.useState<string>("");
 
-    const globeRef = React.useRef<GlobeMethods | undefined>();
-    const rotate = async (globeRef: React.MutableRefObject<GlobeMethods | undefined>) => {
-        if (globeRef.current) {
-            const controls = globeRef.current.controls();
-            controls.enableRotate = false;
-            controls.autoRotate = true;
-            globeRef.current.pointOfView({ lat: 0, lng: 0 });
-            for (let i = 130; i > 0; i -= 1) {
-                controls.autoRotateSpeed = i;
-                await new Promise((resolve) => setTimeout(resolve, 0.2));
-            }
-            controls.enableRotate = true;
-            controls.autoRotate = false;
-        }
-        setTimeout(() => {
-            setBackgroundUrl("./background.jpg");
-        }, 300);
+  const globeRef = React.useRef<GlobeMethods | undefined>();
+  const rotate = async (
+    globeRef: React.MutableRefObject<GlobeMethods | undefined>
+  ) => {
+    if (globeRef.current) {
+      const controls = globeRef.current.controls();
+      controls.enableRotate = false;
+      controls.autoRotate = true;
+      globeRef.current.pointOfView({ lat: 0, lng: 0 });
+      for (let i = 130; i > 0; i -= 1) {
+        controls.autoRotateSpeed = i;
+        await new Promise((resolve) => setTimeout(resolve, 0.2));
+      }
+      controls.enableRotate = true;
+      controls.autoRotate = false;
     }
+    setTimeout(() => {
+      setBackgroundUrl("./background.jpg");
+    }, 300);
+  };
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    React.useEffect(() => {
-        rotate(globeRef);
-    }, []);
+  React.useEffect(() => {
+    // rotate(globeRef);
+  }, []);
 
-    React.useEffect(() => {
-        setIsStoryModalOpen(false);
-        rotate(globeRef);
-    }, [selectedStory]);
+  React.useEffect(() => {
+    setIsStoryModalOpen(false);
+    // rotate(globeRef);
+  }, [selectedStory]);
 
-    React.useEffect(() => {
-        if (selectedPin) {
-            console.log("aaaa");
-        }
-    }, [selectedPin]);
+  return (
+    <>
+      <div id="simulation" className="overflow-hidden overflow-y-hidden">
+        <StyledContainer onClick={() => setIsStoryModalOpen(true)}>
+            {extinctionStories.map((story) => {
+            return (
+                <>
 
-    const Timeline: React.FC = () => {
-        return (
-            // <div className="absolute grid grid-cols-6 md:gap-x-18 lg:gap-x-24 z-10 rounded-full top-3 left-1/2 transform -translate-x-1/2 bg-slate-500 w-4/6 lg:w-3/6 h-[2vh] text-transparent pointer-events-auto cursor-pointer" onClick={() => setIsStoryModalOpen(true)}>
-            <div className="absolute grid grid-cols-6 md:gap-x-18 lg:gap-x-24 z-10 rounded-full bottom-3 left-1/2 transform -translate-x-1/2 bg-slate-500 w-4/6 lg:w-3/6 h-[2vh] text-transparent pointer-events-auto cursor-pointer" onClick={() => setIsStoryModalOpen(true)}>
-                {extinctionStories.map((story) => {
-                    return (
-                    <>
-                        <TimePoint title={story.title} selected={selectedStory === story}/>
-                    </>);
-                })}
-            </div>
-        );
-    }
-    
-
-    return (
-        <>
-            <div id="simulation">
-                {isStoryModalOpen == false && selectedStory == null && (
-                    <div className="absolute top-0 left-0 z-10 m-16">
-                        <BackButton onClick={() => {navigate('/home')}}/>
-                    </div>
-                )}
-                <Stories isOpen={isStoryModalOpen} onClose={() => setIsStoryModalOpen(false)} stories={extinctionStories} onSelectStory={(story) => setSelectedStory(story)}/>
-                {(selectedStory || selectedPin?.frame) && <StoryCarousel storyFrames={selectedStory?.frames ?? [selectedPin!.frame!]} onSelectFrame={setSelectedFrameIndex} onClose={() => setSelectedStory(undefined)} />}
-                <Timeline />
-                <EarthSimulation 
-                    imageUrl={selectedStory?.globeImg || "./nowadays.png"}
-                    pins={selectedStory?.frames[selectedFrameIndex]?.pins || []}
-                    globeRef={globeRef}
-                    backgroundUrl={backgroundUrl}
-                    setSelectedPin={setSelectedPin}
-                    connections={selectedStory?.frames[selectedFrameIndex]?.connections || []}
-                />
-            </div>
-        </>
-    );
-}
+                    <TimePoint
+                    title={story.title}
+                    selected={selectedStory === story}
+                    />
+                </>
+            );
+            })}
+            <StyledLine />
+        </StyledContainer>
+        {isStoryModalOpen == false && selectedStory == null && (
+          <div className="absolute top-0 left-0 z-10 m-16">
+            <BackButton
+              onClick={() => {
+                navigate("/home");
+              }}
+            />
+          </div>
+        )}
+        <Stories
+          isOpen={isStoryModalOpen}
+          onClose={() => setIsStoryModalOpen(false)}
+          stories={extinctionStories}
+          onSelectStory={(story) => setSelectedStory(story)}
+        />
+        {selectedStory && (
+          <StoryCarousel
+            storyFrames={selectedStory.frames}
+            onSelectFrame={setSelectedFrameIndex}
+            onClose={() => setSelectedStory(undefined)}
+          />
+        )}
+        <EarthSimulation
+          imageUrl={selectedStory?.globeImg || "./nowadays.png"}
+          pins={selectedStory?.frames[selectedFrameIndex].pins || []}
+          globeRef={globeRef}
+          backgroundUrl={backgroundUrl}
+          connections={
+            selectedStory?.frames[selectedFrameIndex]?.connections || []
+          }
+        />
+      </div>
+    </>
+  );
+};
 
 export default Simulation;
