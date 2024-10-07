@@ -93,9 +93,9 @@ export const EarthSimulation: React.FC<EarthSimulationProps> = ({
             frame.render(
                 <S.Frame >
                     <S.FrameTitle>{pin.frame?.frameLeft!.title}</S.FrameTitle>
-                    {pin.frame?.frameLeft!.imgs!.map((img) => {
+                    {pin.frame?.frameLeft!.imgs!.map((img, index) => {
                         return (
-                            <S.FrameImage src={img} />
+                            <S.FrameImage key={index} src={img} />
                         );
                     })}
                     <S.FrameDescription>
@@ -158,6 +158,7 @@ const Simulation: React.FC = () => {
 
   const [isStoryModalOpen, setIsStoryModalOpen] =
     React.useState<boolean>(false);
+  const [isStart, setIsStart] = React.useState<boolean>(true);
 
   const [selectedStory, setSelectedStory] = React.useState<Story>();
   const [selectedFrameIndex, setSelectedFrameIndex] = React.useState<number>(0);
@@ -165,6 +166,15 @@ const Simulation: React.FC = () => {
   const [backgroundUrl, setBackgroundUrl] = React.useState<string>("");
 
   const globeRef = React.useRef<GlobeMethods | undefined>();
+
+  const handleSelectFrame = (index: number) => {
+    if (index == selectedFrameIndex) {
+        setIsStoryModalOpen(false);
+    } else {
+        setSelectedFrameIndex(index);
+    }
+  }
+
   const rotate = async (
     globeRef: React.MutableRefObject<GlobeMethods | undefined>
   ) => {
@@ -188,32 +198,39 @@ const Simulation: React.FC = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    // rotate(globeRef);
+    rotate(globeRef);
   }, []);
 
   React.useEffect(() => {
     setIsStoryModalOpen(false);
-    // rotate(globeRef);
+    rotate(globeRef);
   }, [selectedStory]);
 
   return (
     <>
       <div id="simulation" className="overflow-hidden overflow-y-hidden">
-        <StyledContainer onClick={() => setIsStoryModalOpen(true)}>
-            {extinctionStories.map((story) => {
+        { isStart && (
+            <S.Frame className="w-full h-screen absolute z-10 ms-5 mt-80">
+                <S.FrameTitle>Interact with the Timeline to Start</S.FrameTitle>
+            </S.Frame>
+        )
+        }
+        <StyledContainer onClick={() => {if (selectedStory) {return} setIsStoryModalOpen(true); setIsStart(false);}}>
+            {extinctionStories.map((story, index) => {
             return (
                 <>
-
                     <TimePoint
-                    title={story.title}
-                    selected={selectedStory === story}
+                        key={index}
+                        title={story.title}
+                        selected={selectedStory === story}
+                        isStart={selectedStory}
                     />
                 </>
             );
             })}
             <StyledLine />
         </StyledContainer>
-        {isStoryModalOpen == false && selectedStory == null && (
+        {isStoryModalOpen == false && selectedStory == null && !isStart && (
           <div className="absolute top-0 left-0 z-10 m-16">
             <BackButton
               onClick={() => {
@@ -231,13 +248,13 @@ const Simulation: React.FC = () => {
         {selectedStory && (
           <StoryCarousel
             storyFrames={selectedStory.frames}
-            onSelectFrame={setSelectedFrameIndex}
+            onSelectFrame={handleSelectFrame}
             onClose={() => setSelectedStory(undefined)}
           />
         )}
         <EarthSimulation
           imageUrl={selectedStory?.globeImg || "./nowadays.png"}
-          pins={selectedStory?.frames[selectedFrameIndex].pins || []}
+          pins={selectedStory?.frames[selectedFrameIndex]?.pins || []}
           globeRef={globeRef}
           backgroundUrl={backgroundUrl}
           connections={
