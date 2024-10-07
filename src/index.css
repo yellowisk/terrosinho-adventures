@@ -10,6 +10,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  background-image: url("./assets/bg.png");
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -78,18 +79,22 @@ button:focus-visible {
   height: 12px; /* for horizontal scrollbar */
 }
 
+.body {
+  background-image: url("./assets/bg.png");
+}
+
 /* Track (background of the scrollbar) */
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 
 /* Handle (draggable part of the scrollbar) */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
   border-radius: 6px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
