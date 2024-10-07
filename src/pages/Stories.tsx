@@ -10,6 +10,8 @@ interface StoryProps {
   onClose: () => void;
   onSelectStory: (story: Story) => void;
   stories: Story[];
+  isStart: boolean;
+  setIsStart: (value:boolean) => void;
 }
 
 const StoriesContainer = styled.div`
@@ -40,6 +42,8 @@ const Stories: React.FC<StoryProps> = ({
   onClose,
   onSelectStory,
   stories,
+  isStart,
+  setIsStart,
 }) => {
   return (
     <>
@@ -56,6 +60,8 @@ const Stories: React.FC<StoryProps> = ({
                   key={index}
                   story={story}
                   onSelected={onSelectStory}
+                  isStart={isStart}
+                  setIsStart={setIsStart}
                   className="pointer-events-auto"
                 />
                 <div className="flex items-center mt-4 justify-center">

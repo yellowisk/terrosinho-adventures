@@ -23,7 +23,7 @@ interface AudioContextProviderProps {
 export const AudioContextProvider: React.FC<AudioContextProviderProps> = ({
   children,
 }) => {
-  const audio = new Audio("public/assets/songs/bg-song.mp3");
+  const audio = new Audio("./assets/songs/bg-song.mp3");
   audio.loop = true;
 
   // return () => {
