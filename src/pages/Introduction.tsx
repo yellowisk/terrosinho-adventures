@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { EarthSimulation } from "./Simulation";
 import { useNavigate } from "react-router-dom";
+import { GlobeMethods } from "react-globe.gl";
 
 import * as S from "./Introduction.styles";
 import { useAudioContext } from "../context/AudioContext";
@@ -10,14 +11,12 @@ const Introduction: React.FC = () => {
   const { play } = useAudioContext();
   const [step, setStep] = useState<number>(-1);
   const navigate = useNavigate();
-
+  const globeRef = useRef<GlobeMethods | undefined>(undefined);
   const backgroundUrl = "";
 
   const renderStep = () => {
     switch (step) {
-      // case 0:
-      //   return <></>; // TODO - globo girando
-      case 1: // TODO - Mudar depois
+      case 1: 
         return <Step step={1} />;
       case 11:
         return <Step11 step={step} />;
@@ -95,7 +94,7 @@ const Introduction: React.FC = () => {
     );
   };
 
-  const legends = {
+  const legends: { [key: number]: string } = {
     [1]: "Welcome to the Anthropocene.",
     [2]: "A lot has happened since you started gaining more power. Don't worry, though, I’ll be alright… this is a part of me. I will heal, as I always do.",
     [3]: "Speaking of which, have you noticed how I am just like you?",
@@ -110,7 +109,7 @@ const Introduction: React.FC = () => {
     [12]: "Let’s take a time tour through some of the toughest times life has gone through. We can learn some things together and try to understand the challenges life is currently facing. Walk with me…",
   };
 
-  const images = {
+  const images: { [key: number]: string } = {
     [4]: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDVmenN0NXEyOWw0cTNvazFlYm16cjMzZzhtNXBmMXRpenpubHlqbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1bTEQnjArFBy8/giphy.webp",
     [5]: "https://media4.giphy.com/media/v1.[Y2lkPTc5MGI3NjExZGVyMjA5aDBpZnA1NWU0OHl3encwYjBrYTQ2MHhrOWwxNG13YmJucyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WXgQucWm9SUHm/giphy.webp",
     [6]: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOW9leXRibXc3MHNxb2txZnZpenJ1b3hzOHc2Y25uZjhlcHBqN3R4dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Fyh2GnAMYtK3HTlklo/giphy.webp",
@@ -160,9 +159,8 @@ const Introduction: React.FC = () => {
           <div className="absolute z-10 overflow-y-hidden">{renderStep()}</div>
           <EarthSimulation
             imageUrl={"./nowadays.png"}
-            globeRef={undefined}
+            globeRef={globeRef}
             backgroundUrl={backgroundUrl}
-            setSelectedPin={() => {}}
             pins={[]}
             connections={[]}
           />
