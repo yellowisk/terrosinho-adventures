@@ -54,7 +54,7 @@ const Introduction: React.FC = () => {
 
   const InicialQuestion: React.FC = () => {
     return (
-      <S.Container className="bg-black">
+      <S.Container>
         <h1 className="text-6xl font-bold mb-16 text-white animate-pulse">
           ✨💻 CODING IN LUA 🌙✨
         </h1>
