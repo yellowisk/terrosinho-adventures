@@ -16,7 +16,7 @@ interface GameProps extends MinigameInterface {
     onReset: () => void; 
 }
 
-const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, title, options, finalScore, onBack, onReset }) => {
+const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, title, options, onBack }) => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const [sliderValue, setSliderValue] = useState(100);
     const [isDragging, setIsDragging] = useState(false);
@@ -24,7 +24,6 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
     const [showExplanation, setShowExplanation] = useState(false);
     const [maxScorePossible, setMaxScorePossible] = useState(0);
     const [correctOptions, setCorrectOptions] = useState<SolutionOption[]>([]);
-    const [incorrectOptions, setIncorrectOptions] = useState<SolutionOption[]>([]);
 
     useEffect(() => {
         const scoreCount = options.reduce((count, option) => {
@@ -39,7 +38,6 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
         const newIncorrectOptions = optionsSelected.filter(option => !option.type.includes(type));
         
         setCorrectOptions(newCorrectOptions);
-        setIncorrectOptions(newIncorrectOptions);
         
         console.log("Correct Options:", newCorrectOptions);
         console.log("Incorrect Options:", newIncorrectOptions);
@@ -69,7 +67,7 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
         return optionsSelected.includes(sol);
     };
 
-    const handleMouseDown = (e: React.MouseEvent) => {
+    const handleMouseDown = () => {
         setIsDragging(true);
     };
 

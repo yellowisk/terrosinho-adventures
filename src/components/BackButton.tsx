@@ -1,6 +1,5 @@
 import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 
 interface BackButtonProps {
   onClick?: () => void;

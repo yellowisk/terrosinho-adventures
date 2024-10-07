@@ -4,10 +4,6 @@ const FadeInAnimation = css`
   animation: glow 2s 5;
 `;
 
-const FadeInAnimation2 = css`
-  animation: glow2 2s 5;
-`;
-
 export const StyledContainer = styled.div`
   position: absolute;
   z-index: 10;
