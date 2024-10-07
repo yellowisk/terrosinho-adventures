@@ -362,7 +362,7 @@ export const story6: Story = {
     {
       terrosoImg: "",
       frameRight: {
-        title: "Interact with the red pins",
+        title: "Interact with the red pins,\nclick again to close!",
       },
       pins: interactPin
     },

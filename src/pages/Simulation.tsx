@@ -51,21 +51,23 @@ export const EarthSimulation: React.FC<EarthSimulationProps> = ({
   const [arcsData, setArcsData] = React.useState<Arc[]>([]);
 
     React.useEffect(() => {
+        setArcsData([]);
         if (connections.length > 0) {
-        connections.forEach((connection) => {
-            const startPin = pins.find((pin) => pin.label === connection.src);
-            const endPin = pins.find((pin) => pin.label === connection.dst);
-            if (startPin && endPin) {
-            const arc = {
-                startLat: startPin.lat,
-                startLng: startPin.lng,
-                endLat: endPin.lat,
-                endLng: endPin.lng,
-            };
-            setArcsData((curArcsData) => [...curArcsData, arc]);
-            }
-        }, [connections, pins])}
-    });
+            connections.forEach((connection) => {
+                const startPin = pins.find((pin) => pin.label === connection.src);
+                const endPin = pins.find((pin) => pin.label === connection.dst);
+                if (startPin && endPin) {
+                    const arc = {
+                        startLat: startPin.lat,
+                        startLng: startPin.lng,
+                        endLat: endPin.lat,
+                        endLng: endPin.lng,
+                    };
+                    setArcsData((curArcsData) => [...curArcsData, arc]);
+                }
+            });
+        }
+    }, [connections, pins]);
 
     const formatPin = (pinObj: object) => {
         let pinOpen = false;
@@ -122,6 +124,10 @@ export const EarthSimulation: React.FC<EarthSimulationProps> = ({
         p.onmouseenter = () => toolTip.style.visibility = 'visible';
         p.onmouseleave = () => toolTip.style.visibility = 'hidden';
         p.onclick = () => {
+            if (!pin.frame) {
+                return;
+            }
+
             pinOpen = !pinOpen;
             if (pinOpen) {
                 fDiv.className = 'pointer-events-none visible absolute w-[65rem] transform translate-x-[10rem]';
