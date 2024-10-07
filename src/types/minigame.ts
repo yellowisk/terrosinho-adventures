@@ -1,4 +1,4 @@
-import { Cross, Flame, Home, Icon as LucideIcon, Sprout, Tornado } from 'lucide-react';
+import { Cross, Home, Icon as LucideIcon, Sprout, Tornado } from 'lucide-react';
 import { Droplet, Mountain, Wind } from 'lucide-react';
 
 type SolutionOption = {

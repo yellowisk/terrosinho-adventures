@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import BackButton from "../components/BackButton";
 import { questions1, questions2 } from "../types/quiz";
 import Question from "../components/Quiz/Question";
-import { PaperclipIcon } from "lucide-react";
 
 const Quiz: React.FC = () => {
   const [selectedQuiz, setSelectedQuiz] = useState(0);

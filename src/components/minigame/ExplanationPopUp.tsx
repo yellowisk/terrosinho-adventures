@@ -25,18 +25,6 @@ const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, 
         }
     });
 
-    const formatTypes = (types: SolutionType[]) => {
-        if (types.length === 1) {
-            return types[0];
-        } else if (types.length === 2) {
-            return `${types[0]} and ${types[1]}`;
-        } else {
-            const allButLast = types.slice(0, -1).join(", ");
-            const last = types[types.length - 1];
-            return `${allButLast}, and ${last}`;
-        }
-    };
-
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-gray-700/80 rounded-lg p-6 max-w-lg w-full">

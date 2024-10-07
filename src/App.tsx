@@ -1,6 +1,6 @@
 // import reactLogo from "./assets/react.svg";
 // import viteLogo from "/vite.svg";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Quiz from "./pages/Quiz";
 import { AudioContextProvider } from "./context/AudioContext";
