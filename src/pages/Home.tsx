@@ -20,6 +20,9 @@ const fadeInAnimation = keyframes`
 
 const StyledTitle = styled.h1`
   animation: ${fadeInAnimation} 0.5s ease-in;
+  text-align: center;
+  word-wrap: break-word;
+  font-size: 6lvw;
 `;
 
 const Home: React.FC = () => {
@@ -43,7 +46,8 @@ const Home: React.FC = () => {
   return (
     <div className="relative overflow-hidden flex  min-h-screen  flex-col justify-center items-center m:py-12">
       <StyledTitle className="text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 drop-shadow-lg mb-8">
-        WELCOME TO ANTHROPOCENE
+        WELCOME TO <br />
+        THE ANTHROPOCENE
       </StyledTitle>
       <div className="flex flex-col w-[20%] justify-center items-center mt-10 gap-10">
         <Button

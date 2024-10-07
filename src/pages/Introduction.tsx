@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import * as S from "./Introduction.styles";
 import { useAudioContext } from "../context/AudioContext";
+import Button from "../components/Button";
 
 const Introduction: React.FC = () => {
   const { play } = useAudioContext();
@@ -41,10 +42,10 @@ const Introduction: React.FC = () => {
   const NextStepButton: React.FC = () => {
     return (
       <button
-        className="bg-gray-500 hover:bg-gray-7000 text-white font-bold py-2 px-4 rounded m-5 align-bottom "
+        className="text-2xl bg-gray-500 hover:bg-gray-7000 text-white font-bold py-2 px-4 rounded m-5 align-bottom "
         onClick={handleClick}
       >
-        Next
+        NEXT
       </button>
     );
   };
@@ -57,13 +58,41 @@ const Introduction: React.FC = () => {
   const InicialQuestion: React.FC = () => {
     return (
       <S.Container className="bg-black">
+        <h1 className="text-6xl font-bold mb-16 text-white animate-pulse">
+          ✨💻 CODE IN LUA 🌙✨
+        </h1>
+        <div className="border border-gray-500 rounded-lg p-8 mb-8">
+          <div className="text-white text-center text-2xl">
+            <p>
+              This app was developed by 6 students from Brazil in a 48-hour
+              hackathon!
+            </p>
+            <br />
+            <p>
+              Everything in the world is interconnected, so we wanted to design
+              an accessible and interactive way to show how Earth is dynamic.
+              “Welcome to the Anthropocene” is a visual and immersive
+              multi-platform experience that provides a 3D journey through
+              geological eras and explores the climate changes caused by humans.
+              We also developed quizzes and a disaster management minigame to
+              engage the user to reflect on today’s world situation and the
+              future challenges of living on this dynamic planet.
+            </p>
+            <br />
+
+            <p>
+              Join us on this journey to raise awareness and make a positive
+              impact!
+            </p>
+          </div>
+        </div>
         <S.Legend align="center">Are you ready for the journey?</S.Legend>
-        <button
-          className="mt-10 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+        <Button
+          className="text-5xl"
           onClick={handleInicialQuestionButtonClick}
-        >
-          YES
-        </button>
+          text="START"
+          variant="primary"
+        />
       </S.Container>
     );
   };
@@ -73,7 +102,7 @@ const Introduction: React.FC = () => {
     [2]: "A lot has happened since you started gaining more power. Don't worry, though, I’ll be alright… this is a part of me. I will heal, as I always do.",
     [3]: "Speaking of which, have you noticed how I am just like you?",
     [4]: "I breathe",
-    [5]: " talk",
+    [5]: "I talk",
     [6]: "I evolve",
     [7]: "I get sick",
     [8]: "And I heal, as I always do",

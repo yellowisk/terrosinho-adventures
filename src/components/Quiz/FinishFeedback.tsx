@@ -67,7 +67,7 @@ const FinishFeedback: React.FC<{ score: number; total: number }> = ({
                 ],
                 autoStart: true,
                 loop: false,
-                delay: 60,
+                delay: 20,
                 deleteSpeed: Infinity,
               }}
             />
@@ -82,7 +82,7 @@ const FinishFeedback: React.FC<{ score: number; total: number }> = ({
         className="ml-16 w-1/5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={() => window.location.reload()}
       >
-        Try Again
+        Quiz Menu
       </button>
     </>
   );

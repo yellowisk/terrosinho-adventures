@@ -1,3 +1,5 @@
+import Question from "../components/Quiz/Question";
+
 export type Options = {
   text: string;
   correct?: boolean;
@@ -8,7 +10,7 @@ export type Question = {
   options: Options[];
 };
 
-export const questions: Question[] = [
+export const questions1: Question[] = [
   {
     question: "What is the primary cause of the rapid increase in global temperatures in recent decades?",
     options: [
@@ -54,6 +56,10 @@ export const questions: Question[] = [
       { text: "It improves ocean circulation" }
     ]
   },
+
+];
+
+export const questions2: Question[] = [
   {
     question: "Which of the following is a direct result of climate change that increases the frequency of floods?",
     options: [
@@ -99,4 +105,4 @@ export const questions: Question[] = [
       { text: "Expansion of protected areas" }
     ]
   }
-];
+]

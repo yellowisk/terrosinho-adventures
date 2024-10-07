@@ -13,7 +13,7 @@ const FeedbackContainer = styled.div`
   z-index: 1;
   pointer-events: none;
   text-align: center;
-  animation: fadeOut 3s forwards;
+  animation: fadeOut 1s forwards;
 
   @keyframes fadeOut {
     0% {
