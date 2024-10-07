@@ -1,19 +1,11 @@
 import styled, { css } from "styled-components";
 
 const FadeInAnimation = css`
-  animation: glow 2s 3;
+  animation: glow 2s 5;
+`;
 
-  @keyframes glow {
-    0% {
-      box-shadow: 0 0 5px 5px rgba(236,72,153, 0.5);
-    }
-    50% {
-      box-shadow: 0 0 20px 10px rgba(236,72,153, 0.8);
-    }
-    100% {
-      box-shadow: 0 0 5px 5px rgba(236,72,153, 0.5);
-    }
-  }
+const FadeInAnimation2 = css`
+  animation: glow2 2s 5;
 `;
 
 export const StyledContainer = styled.div`
@@ -27,6 +19,25 @@ export const StyledContainer = styled.div`
   display: flex;
   justify-content: center;
   justify-content: space-between;
+
+  .glow {
+    animation: glow 2s infinite;
+  }
+
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 5px 5px rgba(236,72,153, 0.5);
+      background-color: rgba(236,72,153);
+    }
+    50% {
+      box-shadow: 0 0 20px 10px rgba(236,72,153, 0.8);
+      background-color: rgba(255,255,255);
+    }
+    100% {
+      box-shadow: 0 0 5px 5px rgba(236,72,153, 0.5);
+      background-color: rgba(236,72,153);
+    }
+  }
 `;
 export const StyledLine = styled.div`
   background-color: rgb(255 255 255 / 50%);
@@ -55,7 +66,6 @@ export const StyledPoint = styled.div<{ selected: boolean }>`
   background-color: rgb(255 255 255);
   margin: 10px;
   background-color: ${({ selected }) => (selected ? "red" : "white")};
-  ${FadeInAnimation}
 `;
 
 export const StyledPointTitle = styled.div<{ selected: boolean }>`

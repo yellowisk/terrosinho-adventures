@@ -33,7 +33,7 @@ const BackButton: React.FC<BackButtonProps> = ({ onClick, showText }) => {
     // </StyledButton>
     <button onClick={() => goBack()} className="flex flex-row gap-4 items-center line-height-16px mb-8 cursor-pointer pointer-events-auto">
       <ChevronLeft /> 
-      { showText && <span>Go Back</span> }
+      { (showText || showText == undefined) && <span>Go Back</span> }
     </button>
   );
 };

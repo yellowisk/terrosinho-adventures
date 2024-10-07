@@ -50,9 +50,10 @@ const Stories: React.FC<StoryProps> = ({
             Timeline
           </h1>
           <StoriesContainer className="z-20 flex flex-row">
-            {stories.map((story) => (
+            {stories.map((story, index) => (
               <div>
                 <StoryCover
+                  key={index}
                   story={story}
                   onSelected={onSelectStory}
                   className="pointer-events-auto"
