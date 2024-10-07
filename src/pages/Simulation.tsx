@@ -221,7 +221,7 @@ const Simulation: React.FC = () => {
             </S.Frame>
         )
         }
-        <StyledContainer onClick={() => {if (selectedStory) {return} setIsStoryModalOpen(true); setIsStart(false);}}>
+        <StyledContainer onClick={() => {if (selectedStory) {return} setIsStoryModalOpen(true); }}>
             {extinctionStories.map((story, index) => {
             return (
                 <>
@@ -249,6 +249,8 @@ const Simulation: React.FC = () => {
           isOpen={isStoryModalOpen}
           onClose={() => setIsStoryModalOpen(false)}
           stories={extinctionStories}
+          isStart={isStart}
+          setIsStart={setIsStart}
           onSelectStory={(story) => setSelectedStory(story)}
         />
         {selectedStory && (

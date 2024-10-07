@@ -53,7 +53,7 @@ const Home: React.FC = () => {
         <Button
           className="text-5xl"
           onClick={handleSimulatorClick}
-          text="Simulator"
+          text="Start Experience"
           variant="primary"
         />
 
