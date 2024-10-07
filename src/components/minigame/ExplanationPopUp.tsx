@@ -41,22 +41,22 @@ const ExplanationPopUp: React.FC<ExplanationProps> = ({ type, options, onReset, 
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-gray-700/80 rounded-lg p-6 max-w-lg w-full">
                 <div className="text-2xl font-bold text-white text-center">
-                    {incorrectOptions.length > 0 ? "Explanation" : "Congratulations!"}
+                    {correctOptions.length < maxScorePossible ? "Try Again!" : "Congratulations!"}
                 </div>
 
-                {incorrectOptions.length > 0 ? (
+                {correctOptions.length < maxScorePossible ? (
                     <div className="flex flex-row justify-center gap-2 mt-4">
-                        <div className="flex flex-col justify-center max-h-60 overflow-y-auto">  {/* Scrollable Container */}
-                            {incorrectOptions.map((option, index) => (
-                                <div key={index} className="flex flex-col items-center mb-4">
-                                    <div className="flex flex-row justify-between gap-2">
-                                        <option.Icon className="w-8 h-8 text-white" />
-                                        <div className="text-xl text-white font-bold">
-                                            {option.text} would fit better in a {formatTypes(option.type)}.
-                                        </div>
-                                    </div>
+                        <div className="flex flex-col justify-center max-h-60 overflow-y-auto">
+                            { incorrectOptions.length > 0 ? (
+                                <div className="text-white text-lg mb-4">
+                                    You have found {correctOptions.length} out of {maxScorePossible} solutions.
                                 </div>
-                            ))}
+                            ) : (
+                                <div className="text-white text-lg mb-4">
+                                    You have found all {maxScorePossible} solutions. Great job!
+                                </div>
+                            )}
+                            
                         </div>
                         <div className="flex flex-col justify-center w-full">
                             <img src={terrosoExplain} alt="terroso" className="w-auto h-48 scale-x-[-1]" />

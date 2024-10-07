@@ -10,8 +10,6 @@ import ExplanationPopUp from "./ExplanationPopUp";
 import { ChevronContainer } from "../Story/styles";
 import BackButton from "../BackButton";
 import { AlignJustify } from "lucide-react";
-import { set } from "react-hook-form";
-
 
 interface GameProps extends MinigameInterface {
     onBack: () => void;  
@@ -25,28 +23,37 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
     const [optionsSelected, setOptionsSelected] = useState<SolutionOption[]>([]);
     const [showExplanation, setShowExplanation] = useState(false);
     const [maxScorePossible, setMaxScorePossible] = useState(0);
+    const [correctOptions, setCorrectOptions] = useState<SolutionOption[]>([]);
+    const [incorrectOptions, setIncorrectOptions] = useState<SolutionOption[]>([]);
 
     useEffect(() => {
-        let scoreCount = 0;
-        options.forEach((option) => {
-            const isCorrectOption = option.type.includes(type);
-            if (isCorrectOption) {
-                scoreCount += 1;
-            }
-        });
+        const scoreCount = options.reduce((count, option) => {
+            return count + (option.type.includes(type) ? 1 : 0);
+        }, 0);
         setMaxScorePossible(scoreCount);
         setSliderValue(50);
     }, [options, type]);
 
+    useEffect(() => {
+        const newCorrectOptions = optionsSelected.filter(option => option.type.includes(type));
+        const newIncorrectOptions = optionsSelected.filter(option => !option.type.includes(type));
+        
+        setCorrectOptions(newCorrectOptions);
+        setIncorrectOptions(newIncorrectOptions);
+        
+        console.log("Correct Options:", newCorrectOptions);
+        console.log("Incorrect Options:", newIncorrectOptions);
+    }, [optionsSelected, type]);
+
     const scrollLeft = () => {
         if (scrollRef.current) {
-            scrollRef.current.scrollBy({ left: -200, behavior: "smooth" });
+            scrollRef.current.scrollBy({ left: -500, behavior: "smooth" });
         }
     };
 
     const scrollRight = () => {
         if (scrollRef.current) {
-            scrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
+            scrollRef.current.scrollBy({ left: 500, behavior: "smooth" });
         }
     };
 
@@ -56,11 +63,11 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
         } else {
             setOptionsSelected([...optionsSelected, sol]);
         }
-    }
+    };
 
     const isOptionSelected = (sol: SolutionOption) => {
-      return optionsSelected.includes(sol);
-  };
+        return optionsSelected.includes(sol);
+    };
 
     const handleMouseDown = (e: React.MouseEvent) => {
         setIsDragging(true);
@@ -84,14 +91,13 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
 
     const closeExplanationPopUp = () => {
         setShowExplanation(false);
-    }
-
+    };
 
     return (
         <div className="h-screen grid lg:grid-rows-[15%_60%_20%] grid-rows-[20%_55%_25%]">
             <div className="flex flex-row w-full items-center p-2">
                 <div className="mt-8">
-                    <BackButton onClick={onBack}/>
+                    <BackButton onClick={onBack} />
                 </div>
                 <div className="flex flex-row justify-center grow">
                     <div className="p-3 sm:text-2xl sm:px-2  mx-3 sm:font-bold sm:rounded-3xl text-white text-lg rounded-xl font-medium :">
@@ -100,7 +106,7 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
                 </div>
             </div>
 
-                        <div className="flex flex-row">
+            <div className="flex flex-row">
                 <div
                     className="relative w-full overflow-hidden select-none"
                     onMouseMove={handleMouseMove}
@@ -113,29 +119,44 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
                         style={{ clipPath: `rect(0 ${sliderValue}% 100% 0)` }}
                     >
                         <img src={imageAfter} alt="After" className="w-full h-full object-cover" />
+                        <div className="absolute flex-col justify-center items-start bg-gray-400">
+                            <div className="text-white text-2xl font-bold p-2">Before</div>
+                        </div>
                     </div>
                     <div
                         className="absolute top-0 right-20 h-full bg-gray-400"
                         style={{ left: `${sliderValue}%`, width: "5px", cursor: "ew-resize" }}
                         onMouseDown={handleMouseDown}
-                    > 
-                        <AlignJustify width='16px' className="mt-[28vh] transform -translate-x-1/3 text-center items-center mb-6 bg-gray-400 rounded-full"/>
+                    >
+                        <AlignJustify width='16px' className="mt-[28vh] transform -translate-x-1/3 text-center items-center mb-6 bg-gray-400 rounded-full" />
                     </div>
                     <div className="absolute right-0 flex flex-col items-end h-full me-4 pb-6">
                         <div className="flex flex-col h-1/2 justify-end lg:-translate-y-0 -translate-y-3 py-5 items-center">
-                            <Dialog text={question} />
+                            <Dialog text={`${question} There are ${maxScorePossible} correct answers!`} />
                         </div>
                         <div className="flex flex-col h-1/2 w-full justify-center items-center lg:translate-y-3 -translate-y-0">
                             <ImageContent src={terroso} alt="terroso" />
                         </div>
-                        <div className="flex flex-row w-full mb-1 justify-center">
-                          <Button text="Submit" onClick={openExplanationPopUp} variant='primary'/>
-                        </div>
+                        { correctOptions.length == maxScorePossible ? (
+                            <div className="flex flex-row w-full mb-1 justify-center">
+                                <Button text="Submit" onClick={openExplanationPopUp} variant='primary' />
+                            </div>
+                        ) : (
+                            <div></div>
+                        )}
                     </div>
                 </div>
             </div>
 
             <div className="flex flex-col justify-center overflow-hidden">
+                <div className="flex flex-row justify-center">
+                    <span>
+                        <span className={correctOptions.length > 0 ? "text-green-500" : "text-white"}>
+                            {correctOptions.length}
+                        </span> 
+                        {" "} out of {maxScorePossible} correct solutions found.
+                    </span>
+                </div>
                 <div className="flex items-center overflow-hidden">
                     <ChevronContainer disabled={false} className="ms-2">
                         <button onClick={scrollLeft} className="text-white">
@@ -150,7 +171,6 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
                                     text={option.text}
                                     icon={option.Icon as LucideIcon}
                                     selected={isOptionSelected(option)}
-                                    color={option.color}
                                     onClick={() => computePoints(option)}
                                 />
                             ))}
@@ -165,8 +185,15 @@ const Game: React.FC<GameProps> = ({ type, imageBefore, imageAfter, question, ti
             </div>
 
             <div className="flex flex-row justify-center mx-20">
-              {showExplanation && <ExplanationPopUp type={type} options={optionsSelected} 
-              onReset={closeExplanationPopUp} onBack={onBack} maxScorePossible={maxScorePossible} />}
+                {showExplanation && (
+                    <ExplanationPopUp
+                        type={type}
+                        options={optionsSelected}
+                        onReset={closeExplanationPopUp}
+                        onBack={onBack}
+                        maxScorePossible={maxScorePossible}
+                    />
+                )}
             </div>
         </div>
     );
