@@ -43,6 +43,7 @@ const StoryCover: React.FC<StoryCoverProps> = ({
         className={className}
       >
         <S.ImageCover
+          loading="lazy"
           isEnabled={isEnabled}
           alt={story.title}
           src={story.cover}

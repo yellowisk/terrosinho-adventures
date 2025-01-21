@@ -15,64 +15,20 @@ export const animationFadeIn = css`
 
 export const Container = styled.div`
   left: 0;
+  right: 0;
   top: 0;
+  bottom: 0;
   position: fixed;
-  z-index: 2;
+  z-index: 30;
+  pointer-events: none;
   padding: 16px;
-  height: -webkit-fill-available;
-  width: 100vw;
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  /* flex-direction: column; */
-  /* align-content: flex-end; */
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
   ${animationFadeIn}
 `;
-export const StoryCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff10;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  aspect-ratio: 1 / 1;
-  max-width: fit-content;
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease;
-  border-radius: 10px;
-  &:hover {
-    border-color: #ffffff90;
-  }
-  cursor: pointer;
-  span {
-    text-align: center;
-    font-size: 1.20dvw;
-    color: white;
-    text-overflow: ellipsis;
-    font-weight: 500;
-  }
-`;
 
-export const ImageCover = styled.img`
-  border-radius: 10px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: 1 / 1;
-  width: 200lvw;
-  margin: 16px;
-  cursor: pointer;
-  object-fit: cover;
-`;
-
-export const Footer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-self: flex-end;
-`;
 export const FramesContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -80,61 +36,55 @@ export const FramesContainer = styled.div`
   width: inherit;
 `;
 
-export const Frame = styled.div`
-  width: 30%;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  overflow-y: hidden;
-  margin-top: 32px;
-  padding: 16px;
-  border-radius: 10px;
-  /* box-shadow: 0 0 10px #4a556887; */
-  overflow: hidden;
-  text-align: justify;
-  background-color: #4a556887;
-  white-space: pre-wrap;
-  ${animationFadeIn}
-`;
-
 export const FrameImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 12px;
+  margin: 16px 0;
 `;
 
-export const FrameTitle = styled.h1`
-  font-size: 24px;
-  color: white;
-  font-weight: 700;
-`;
-
-export const FrameDescription = styled.p`
-  font-size: 16px;
-  color: white;
-`;
-
-export const LegendContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  padding: 8px;
-  margin: 0 16px;
-  overflow: hidden;
-  background-color: #4a556887;
-  border-radius: 10px;
-  padding: 16px;
+export const Frame = css`
+  div {
+    padding: 8px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    padding: 16px;
+    height: min-content;
+  }
   ${animationFadeIn}
 `;
 
-export const LegendTitle = styled.h1`
-  font-size: 24px;
+export const CenterFrame = styled.div`
+  ${Frame}
+  grid-column: 1 / span 7;
+  grid-row: 1 / span 1;
+  display: flex;
+`;
+
+export const LeftFrame = styled.div`
+  ${Frame}
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 5;
+`;
+
+export const RightFrame = styled.div`
+  ${Frame}
+  grid-column: 6/ span 2;
+  grid-row: 2 / span 5;
+`;
+
+export const Title = styled.h1`
+  font-size: 32px;
+  font-weight: 500;
   color: white;
 `;
 
-export const LegendDescription = styled.p`
-  font-size: 16px;
+export const Description = styled.p`
+  font-size: 18px;
   color: white;
+  text-align: justify;
 `;
 
 export const CloseButton = styled.button`
@@ -148,12 +98,14 @@ export const CloseButton = styled.button`
   cursor: pointer;
 `;
 
-export const ChevronContainer = styled.div<{ disabled: boolean }>`
-  height: 100%;
-  width: 70px;
+const Chevron = css`
+  /* height: 100%;
+  width: 70px; */
   border-radius: 5px;
-  min-height: 70px;
-  max-width: 60px;
+  /* min-height: 70px;
+  max-width: 60px; */
+  width: calc(10vw - 64px);
+  margin: 16px;
   color: white;
   cursor: pointer;
   display: flex;
@@ -161,6 +113,16 @@ export const ChevronContainer = styled.div<{ disabled: boolean }>`
   align-items: center;
   background-color: #ffffff47;
   transition: opacity 0.3s ease;
+  svg {
+    height: 94px;
+    width: 94px;
+  }
+`;
+
+export const LeftChevronContainer = styled.div<{ disabled: boolean }>`
+  grid-column: 1 / span 1;
+  grid-row: 7 / span 1;
+  ${Chevron}
   ${(props) =>
     props.disabled
       ? `opacity: 0.1;`
@@ -173,11 +135,27 @@ export const ChevronContainer = styled.div<{ disabled: boolean }>`
     opacity: 1;
   }
   `}
-  svg {
-    height: 48px;
-    width: 48px;
+`; 
+
+export const RightChevronContainer = styled.div<{ disabled: boolean }>`
+  grid-column: 7 / span 1;
+  grid-row: 7 / span 1;
+  justify-self: end;
+  ${Chevron}
+  ${(props) =>
+    props.disabled
+      ? `opacity: 0.1;`
+      : `  
+    opacity: 1;
+      &:hover {
+    opacity: 0.8;
   }
+  &:active {
+    opacity: 1;
+  }
+  `}
 `;
+
 export const BackIcon = styled.div`
   svg {
     height: 42px;
@@ -191,12 +169,11 @@ export const BackIcon = styled.div`
 `;
 
 export const Terroso = styled.img`
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  height: 30vh;
-  margin: 60px;
-  z-index: 1;
   pointer-events: none;
   user-select: none;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  float: left;
+  width: 164px;
+  margin: 16px;
 `;
