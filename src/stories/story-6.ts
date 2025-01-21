@@ -345,6 +345,7 @@ export const story6: Story = {
     "",
   cover:
     "https://assets.newatlas.com/dims4/default/b1e0c2f/2147483647/strip/true/crop/911x607+85+0/resize/1200x800!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fanthropocene-1.jpeg",
+  isLastStory: true,
   frames: [
     {
       terrosoImg: "./assets/terroso_imgs/terroso_normal.png",

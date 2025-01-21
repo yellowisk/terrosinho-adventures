@@ -6,7 +6,7 @@ import Quiz from "./pages/Quiz";
 import { AudioContextProvider } from "./context/AudioContext";
 
 const Home = lazy(() => import("../src/pages/Home"));
-const Introduction = lazy(() => import("../src/pages/Introduction"));
+const Introduction = lazy(() => import("./pages/Introduction/Introduction"));
 const Simulation = lazy(() => import("../src/pages/Simulation"));
 const MinigameMenu = lazy(() => import("../src/pages/MinigameMenu"));
 

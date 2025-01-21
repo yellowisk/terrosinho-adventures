@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
-import { EarthSimulation } from "./Simulation";
+import { EarthSimulation } from "../Simulation";
 import { useNavigate } from "react-router-dom";
 import { GlobeMethods } from "react-globe.gl";
 
 import * as S from "./Introduction.styles";
-import { useAudioContext } from "../context/AudioContext";
-import Button from "../components/Button";
+import { useAudioContext } from "../../context/AudioContext";
+import Button from "../../components/Button";
 
-const Introduction: React.FC = () => {
+const Introduction = () => {
   const { play } = useAudioContext();
   const [step, setStep] = useState<number>(-1);
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Introduction: React.FC = () => {
 
   const renderStep = () => {
     switch (step) {
-      case 1: 
+      case 1:
         return <Step step={1} />;
       case 11:
         return <Step11 step={step} />;

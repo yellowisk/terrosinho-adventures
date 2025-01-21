@@ -19,51 +19,97 @@ export const Container = styled.div`
   position: fixed;
   z-index: 2;
   padding: 16px;
-  height: -webkit-fill-available;
+  height: 100%;
   width: 100vw;
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
-  /* flex-direction: column; */
-  /* align-content: flex-end; */
   ${animationFadeIn}
 `;
-export const StoryCard = styled.div`
+export const StoryCard = styled.div<{
+  isEnabled: boolean;
+  isCurrent: boolean;
+  hasRedBorder?: boolean;
+}>`
   display: flex;
   flex-direction: column;
-  background-color: #ffffff10;
   align-items: center;
-  justify-content: center;
-  padding: 18px;
-  aspect-ratio: 1 / 1;
+  justify-content: flex-end;
   max-width: fit-content;
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease;
+  transition: 0.5s ease;
   border-radius: 10px;
-  &:hover {
-    border-color: #ffffff90;
-  }
   cursor: pointer;
+  background: linear-gradient(rgb(255, 255, 255, 0), rgb(0, 0, 0, 1));
+  ${({ isCurrent }) =>
+    isCurrent &&
+    css`
+      border: 2px solid white;
+    `}
+  ${({ hasRedBorder }) =>
+    hasRedBorder &&
+    css`
+      animation: redBorder 2s infinite;
+    `}
+  &:hover {
+    span {
+      text-shadow: 0px 0px 10px white;
+    }
+    img {
+      ${({ isEnabled }) =>
+        isEnabled &&
+        css`
+          animation: objectPosition 10s infinite;
+        `}
+    }
+  }
   span {
     text-align: center;
-    font-size: 1.20dvw;
+    font-size: 1.3dvw;
     color: white;
+    margin-bottom: 16px;
     text-overflow: ellipsis;
     font-weight: 500;
+    position: fixed;
+  }
+  @keyframes objectPosition {
+    0% {
+      object-position: 50%;
+    }
+    25% {
+      object-position: 0%;
+    }
+    75% {
+      object-position: 100%;
+    }
+    100% {
+      object-position: 50%;
+    }
+  }
+  @keyframes redBorder {
+    0% {
+      box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    }
   }
 `;
 
-export const ImageCover = styled.img`
+export const ImageCover = styled.img<{ isEnabled: boolean }>`
+  z-index: -1;
   border-radius: 10px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1/2;
   width: 200lvw;
-  margin: 16px;
-  cursor: pointer;
   object-fit: cover;
+  transition: 1s ease;
+  ${({ isEnabled }) =>
+    !isEnabled &&
+    css`
+      filter: grayscale(100%) contrast(40%);
+    `}
 `;
 
 export const Footer = styled.div`
@@ -113,90 +159,4 @@ export const FrameTitle = styled.h1`
 export const FrameDescription = styled.p`
   font-size: 16px;
   color: white;
-`;
-
-export const LegendContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  padding: 8px;
-  margin: 0 16px;
-  overflow: hidden;
-  background-color: #4a556887;
-  border-radius: 10px;
-  padding: 16px;
-  ${animationFadeIn}
-`;
-
-export const LegendTitle = styled.h1`
-  font-size: 24px;
-  color: white;
-`;
-
-export const LegendDescription = styled.p`
-  font-size: 16px;
-  color: white;
-`;
-
-export const CloseButton = styled.button`
-  position: absolute;
-  right: 0;
-  top: 0;
-  background-color: transparent;
-  color: white;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-`;
-
-export const ChevronContainer = styled.div<{ disabled: boolean }>`
-  height: 100%;
-  width: 70px;
-  border-radius: 5px;
-  min-height: 70px;
-  max-width: 60px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff47;
-  transition: opacity 0.3s ease;
-  ${(props) =>
-    props.disabled
-      ? `opacity: 0.1;`
-      : `  
-    opacity: 1;
-      &:hover {
-    opacity: 0.8;
-  }
-  &:active {
-    opacity: 1;
-  }
-  `}
-  svg {
-    height: 48px;
-    width: 48px;
-  }
-`;
-export const BackIcon = styled.div`
-  svg {
-    height: 42px;
-    width: 42px;
-  }
-  margin: 8px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-`;
-
-export const Terroso = styled.img`
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  height: 30vh;
-  margin: 60px;
-  z-index: 1;
-  pointer-events: none;
-  user-select: none;
 `;
