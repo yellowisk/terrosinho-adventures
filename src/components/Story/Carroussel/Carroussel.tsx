@@ -40,7 +40,7 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
   };
 
   return (
-    <S.Container onLoad={handleLoad}>
+    <S.Container>
       <S.BackIcon onClick={handleExit} className="pointer-events-auto z-40 ">
         <X />
       </S.BackIcon>
