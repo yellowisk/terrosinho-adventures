@@ -12,7 +12,7 @@ export const story1: Story = {
     {
       terrosoImg: "assets/terroso_imgs/terroso_explain.png",
       frameCenter: {
-        title: "Ordovician Period",
+        title: "Ordovician",
         description: `This is my Ordovician period. Not much time has passed since the Cambrian Explosion. The Cambrian Explosion was an event where life diversified very quickly, and all the major animal phyla appeared. All the organisms were aquatic.`,
       }
     },

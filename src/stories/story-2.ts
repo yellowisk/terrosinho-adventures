@@ -9,12 +9,14 @@ export const story2: Story = {
     {
       terrosoImg: "assets/terroso_imgs/terroso_caveman.png",
       frameCenter: {
+        title: "Late Devonian",
         description: "Welcome to the Late Devonian. At this point in time, insects and some of the first seed-bearing plants have spread across land, and the continents are starting to drift toward forming a supercontinent called Pangaea. Millions of years have passed since our last stop on this time tour, and yet the continents look very different to back then. Do you remember the name of the movement of the continents we discussed back in our last stop of this walk through time?",
       },
     },
     {
       terrosoImg: "assets/terroso_imgs/terroso_explain.png",
       frameCenter: {
+        title: "Second Mass Extinction",
         description: "The end of the Devonian period was marked by the second of the Big Five mass extinctions. This event wiped out more than 75% of all species, especially those living in the oceans, but scientists struggle to pinpoint the exact causes.",
       },
       frameLeft: {
@@ -29,6 +31,7 @@ export const story2: Story = {
     {
       terrosoImg: "assets/terroso_imgs/terroso_scientist.png",
       frameCenter: {
+        title: "Possible Causes",
         description: "Scientists think a combination of different factors could have contributed to this extinction. One theory is that as large land plants spread, they changed the environment by increasing soil erosion and nutrient runoff into the oceans. This may have triggered huge algae growth in the water, which then used up most of the oxygen, leaving too little for other organisms. Other possible causes include sudden climate changes (both warmer and colder temperatures), volcanic eruptions, and even impacts from asteroids.",
       },
     },
@@ -39,6 +42,7 @@ export const story2: Story = {
         title: "Coral Reefs & Stone Sponge",
       },
       frameCenter: {
+        title: "Reef Collapse",
         description: "Whatever the causes, the results were devastating for many species, especially for those that built reefs in the shallow seas. The loss of these reef-building organisms paved the way for new species to evolve and fill the empty ecological spaces in the future.",
       },
     }
