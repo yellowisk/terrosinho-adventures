@@ -101,11 +101,12 @@ export const CloseButton = styled.button`
 const Chevron = css`
   /* height: 100%;
   width: 70px; */
-  border-radius: 5px;
+  /* border-radius: 12px; */
   /* min-height: 70px;
   max-width: 60px; */
+  height: 112px;
   width: calc(10vw - 64px);
-  margin: 16px;
+  /* margin: 16px; */
   color: white;
   cursor: pointer;
   display: flex;
@@ -113,6 +114,7 @@ const Chevron = css`
   align-items: center;
   background-color: #ffffff47;
   transition: opacity 0.3s ease;
+  position: fixed;
   svg {
     height: 94px;
     width: 94px;
@@ -122,6 +124,9 @@ const Chevron = css`
 export const LeftChevronContainer = styled.div<{ disabled: boolean }>`
   grid-column: 1 / span 1;
   grid-row: 7 / span 1;
+  bottom: 0;
+  left: 0;
+  border-top-right-radius: 12px;
   ${Chevron}
   ${(props) =>
     props.disabled
@@ -141,6 +146,9 @@ export const RightChevronContainer = styled.div<{ disabled: boolean }>`
   grid-column: 7 / span 1;
   grid-row: 7 / span 1;
   justify-self: end;
+  bottom: 0;
+  right: 0;
+  border-top-left-radius: 12px;
   ${Chevron}
   ${(props) =>
     props.disabled
@@ -157,15 +165,17 @@ export const RightChevronContainer = styled.div<{ disabled: boolean }>`
 `;
 
 export const BackIcon = styled.div`
-  svg {
-    height: 42px;
-    width: 42px;
-  }
-  margin: 8px;
+  background-color: #ffffff47;
+  border-bottom-left-radius: 12px;
+  padding: 8px;
   position: fixed;
   top: 0;
   right: 0;
   cursor: pointer;
+  svg {
+    height: 52px;
+    width: 52px;
+  }
 `;
 
 export const Terroso = styled.img`
