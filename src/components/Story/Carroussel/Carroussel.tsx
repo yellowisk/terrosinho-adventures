@@ -23,15 +23,15 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
     }
   }, [currentFrameIndex, onSelectFrame]);
 
-  const handleNext = (currentFrame: number) => {
-    if (currentFrame < storyFrames.length - 1) {
-      setCurrentFrameIndex(currentFrame + 1);
+  const handleNext = (crtFrame: number) => {
+    if (crtFrame < storyFrames.length - 1) {
+      setCurrentFrameIndex(crtFrame + 1);
     }
   };
 
-  const handlePrev = (currentFrame: number) => {
-    if (currentFrame > 0) {
-      setCurrentFrameIndex(currentFrame - 1);
+  const handlePrev = (crtFrame: number) => {
+    if (crtFrame > 0) {
+      setCurrentFrameIndex(crtFrame - 1);
     }
   };
 
@@ -40,13 +40,13 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
   };
 
   return (
-    <S.Container>
+    <S.Container onLoad={handleLoad}>
       <S.BackIcon onClick={handleExit} className="pointer-events-auto z-40 ">
         <X />
       </S.BackIcon>
       {currentFrame.frameCenter && (
         <S.CenterFrame>
-            <S.Terroso loading="lazy" src={currentFrame.terrosoImg} />
+          <S.Terroso loading="lazy" src={currentFrame.terrosoImg} />
           <div>
             <S.Title>{currentFrame.frameCenter.title}</S.Title>
             <S.Description>
@@ -71,7 +71,10 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({
           <div>
             <S.Title>{currentFrame.frameRight.title}</S.Title>
             {currentFrame.frameRight.image && (
-              <S.FrameImage loading="lazy" src={currentFrame.frameRight.image} />
+              <S.FrameImage
+                loading="lazy"
+                src={currentFrame.frameRight.image}
+              />
             )}
             <S.Description>{currentFrame.frameRight.description}</S.Description>
           </div>
