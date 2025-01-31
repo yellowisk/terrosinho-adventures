@@ -21,7 +21,7 @@ const Stories: React.FC<StoryProps> = ({
   return (
     <>
       {isOpen && (
-        <div className="overflow-y-hidden absolute bottom-3 p-16 bg-black/90 z-20 h-full overflow-hidden pointer-events-none">
+        <div className="overflow-y-hidden absolute p-16 bg-black/90 z-20 h-full overflow-hidden pointer-events-none">
           <StyledHeader>
             <BackButton onClick={onClose} />
             <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 drop-shadow-lg mb-8">
