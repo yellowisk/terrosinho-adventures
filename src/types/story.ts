@@ -27,6 +27,7 @@ export type Story = {
   title: string,
   cover: string;
   backgroundImg?: string,
+  isLastStory?: boolean,
   globeImg: string,
   location?: {
     latitude: number,

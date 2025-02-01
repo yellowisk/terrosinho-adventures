@@ -17,30 +17,35 @@ export const story3: Story = {
         title: "Ancient Ferns",
       },
       frameCenter: {
+        title: "Permian",
         description: "Welcome to the end of the Permian period. Pangaea is finally formed, creating harsh and dry interior environments but also allowing for unique adaptations among plants and animals. On land, there were early reptiles and a variety of pine trees and ferns, while in the oceans, coral reefs and various marine species flourished.",
       },
     },
     {
       terrosoImg: "assets/terroso_imgs/terroso_flabbergasted.png",
       frameCenter: {
-        description: "However, by the end of the Permian period, nearly all of this life would be gone in the most catastrophic mass extinction event in Earth's history, also known as the Great Dying. Around 90% of all species were wiped out, both in the oceans and on land. Again, this extinction event happened over a long period of time, maybe millions of years.iuhfs",
+        title: "The Great Dying",
+        description: "However, by the end of the Permian period, nearly all of this life would be gone in the most catastrophic mass extinction event in Earth's history, also known as the Great Dying. Around 90% of all species were wiped out, both in the oceans and on land. Again, this extinction event happened over a long period of time, maybe millions of years.",
       }
     },
     {
       terrosoImg: "assets/terroso_imgs/terroso_explain.png",
       frameCenter: {
+        title: "Volcanic Eruptions",
         description: "Scientists believe this event was triggered by a series of massive volcanic eruptions in a region that is now Siberia. These eruptions released enormous amounts of greenhouse gases like carbon dioxide and methane, leading to a rapid rise in global temperatures. The intense heat caused ocean temperatures to rise as well, resulting in a lack of oxygen in the water. Many marine creatures suffocated, while warmer waters also led to the release of toxic gases like hydrogen sulfide, further harming marine life.",
       },
     },
     {
       terrosoImg: "assets/terroso_imgs/terroso_scientist.png",
       frameCenter: {
+        title: "Desertification",
         description: "On land, the extreme heat caused widespread desertification and a collapse of ecosystems. Forests disappeared, and the changing climate caused many plant and insect species to go extinct. It was a chain reaction of devastation, making it incredibly difficult for most forms of life to survive, including trilobites, our old friends, who didn’t make it past this extinction event. With so many species gone, it took millions of years for ecosystems to recover and for new life forms to emerge.",
       },
     },
     {
       terrosoImg: "assets/terroso_imgs/terroso_scientist_wrong.png",
       frameCenter: {
+        title: "The Rise of the Dinosaurs",
         description: "The end of the Permian set the stage for the rise of the dinosaurs in the next era, but it also serves as a reminder of how dramatically Earth’s environment can change.",
       },
     }

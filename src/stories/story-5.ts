@@ -17,18 +17,21 @@ export const story5: Story = {
         title: "Plesiosaurus",
       },
       frameCenter: {
+        title: "Cretaceous-Paleogene",
         description: "We are now at the end of the Cretaceous period, a time when the world was dominated by dinosaurs, along with many other species both on land and in the oceans. But the Cretaceous came to an abrupt end with the fifth and most recent mass extinction event, during which around 75% of all species, including all non-avian dinosaurs, were wiped out. Yes, there still are (avian) dinosaurs around today, but you usually call them ‘birds’",
       },
     },
     {
       terrosoImg: "assets/terroso_imgs/terroso_explain.png",
       frameCenter: {
+        title: "Asteroid Impact",
         description: "The primary cause of this extinction is widely believed to be a massive asteroid impact near what is now the Yucatán Peninsula in Mexico. The impact created a crater over 180 kilometers wide and released a tremendous amount of energy, equivalent to billions of nuclear bombs. This event sent debris and gases high into the atmosphere, blocking out sunlight and causing a dramatic drop in global temperatures. Plants could no longer photosynthesize, disrupting the entire food chain.",
       },
     },
     {
       terrosoImg: "assets/terroso_imgs/terroso_scientist.png",
       frameCenter: {
+        title: "Volcanic Activity",
         description: "In addition to the asteroid, there was a period of intense volcanic activity in what is now India, called the Deccan Traps. These eruptions released large amounts of greenhouse gases, which might have worsened the climate shifts and stressed ecosystems already struggling to survive.",
       },
     },
@@ -39,6 +42,7 @@ export const story5: Story = {
         title: "Meteor",
       },
       frameCenter: {
+        title: "Impact on Marine Life",
         description: "After this extinction, only a fraction of life remained, but it set the stage for fruit-bearing plants, mammals, and eventually humans, to diversify and eventually dominate the planet in the following eras.",
       },
     }
